@@ -1,0 +1,21 @@
+
+*** try to use pure css/js to style all components ***
+
+
+font "Lato" (google font)
+message font weight 400
+bold font weight 900
+font size 15px
+
+timestamp label 12px weight 400 rgb 97 96 97
+
+avatar img 36x36, button, 2px borderradius
+
+light gray (message highlight, icon hover) rgb 248 248 248
+
+links and buttons: cursor pointer
+
+today/yesterday buttons (pill): font size 13, height 28px, box shadow 0 1px 3px 0 rgb 0,0,0,0.08
+      height 28px lineheight 27px  borderradius 24px
+
+- main messages list scrollable box. styled scrollbar. only displays on main messagebox hover 

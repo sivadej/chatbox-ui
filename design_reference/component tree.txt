@@ -1,0 +1,42 @@
+
+****draft****
+
+
+
+App
+    -MockTopBar
+    -MockSideBar
+
+
+
+
+    -Channel
+        -ChannelBar
+            -ChannelTitleSection
+                -lock/unlock
+                -channel label
+                -star
+                    -Tooltip
+                -pin
+                -'Add a topic'
+            -ChannelActionIcons
+                -UserIconGroup
+                -UserCount
+                -ChannelActionIcon(add people to channel)
+                -ChannelActionIcon(show channel details)
+                    ***Tooltip
+
+        -ChatMessages
+            ***DateLineBreakRow
+                -DateLineBreakSubMenu
+            ***MessageRow
+                -AvatarIcon
+                -MessageBody
+                -MessageOptionsPopover
+                    -Tooltip
+            -ProfilePopover
+        -ChatInputBox
+            -ChatInputBoxTextInput
+            -ChatInputBoxIconRow
+                ***ChatInputBoxIcon
+                    -Tooltip

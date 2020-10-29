@@ -12,6 +12,14 @@ Minimum Scope:
 - Chat functionality only
 - Not Markdown, No attachments, basically just text
 - User icons yes.
-- Simulated backend.
+
+Simulated backend.
 - Implement a "delayed" save of server data.
 - Optimistic response
+
+
+
+1:1 UI
+- Same default font
+- Same color
+- Same sizing

@@ -1,0 +1,24 @@
+
+****draft****
+
+
+
+"channel"
+    name : string
+    type : "private" | "public" | "direct"
+
+"user"
+    id : number
+    fullName : string
+    displayName : string
+    avatarUrl : string
+
+messages[message: object]
+"message"
+    timestamp : Date
+    text : string
+    displayName : string
+    avatarUrl : string
+
+messages data set assumptions:
+- array of message objects retrieved in chronological order (oldest to newest)
