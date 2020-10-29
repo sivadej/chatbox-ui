@@ -1,10 +1,22 @@
-import React from 'react';
+import React, { useState } from 'react';
 
-function ChatInputBox({ currentUser, handleSend }) {
+function ChatInputBox({ handleSend }) {
+  const [text, setText] = useState('');
+
+  const handleClick = (e) => {
+    e.preventDefault();
+    console.log('ChatInputBox handleClick():', text);
+    handleSend(text);
+  };
+
   return (
     <div>
-      chat input box component for user id {currentUser.id}
-      <button onClick={handleSend}>send</button>
+      chat input box component
+      <input
+        type='text'
+        value={text}
+        onChange={(e) => setText(e.target.value)}></input>
+      <button onClick={(e) => handleClick(e)}>send</button>
     </div>
   );
 }
