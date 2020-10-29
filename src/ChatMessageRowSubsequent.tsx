@@ -3,12 +3,10 @@ import { dateConversionISOtoShortTime as convertDate } from './dateConversionHel
 import styles from './ChatMessageRow.module.css';
 
 function ChatMessageRow({ message }) {
-  const { text, timestamp, displayName, avatarImg } = message;
+  const { text, timestamp } = message;
 
   return (
     <div className={styles.messageRow}>
-      {avatarImg}
-      <div className={styles.displayName}>{displayName}</div>
       <div className={styles.timestamp}>{convertDate(timestamp)}</div> {text}
     </div>
   );

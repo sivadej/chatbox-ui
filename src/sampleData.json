@@ -26,16 +26,32 @@
     ],
     "messages": [
       {
-        "timestamp": "20201029T000000-0800",
+        "timestamp": "2020-10-29T00:01:00-08:00",
         "text": "hello!",
+        "authorId": 3,
         "displayName": "steve",
         "avatarImg": "steve.png"
       },
       {
-        "timestamp": "20201029T000100-0800",
-        "text": "yo! welcome to the channel :)",
+        "timestamp": "2020-10-29T00:01:30-08:00",
+        "text": "Yo! Welcome to the channl",
+        "authorId": 2,
         "displayName": "jane",
         "avatarImg": "jane.png"
+      },
+      {
+        "timestamp": "2020-10-29T00:02:00-08:00",
+        "text": "*channel. typo :/",
+        "authorId": 2,
+        "displayName": "jane",
+        "avatarImg": "jane.png"
+      },
+      {
+        "timestamp": "2020-10-29T00:03:00-08:00",
+        "text": "np",
+        "authorId": 3,
+        "displayName": "steve",
+        "avatarImg": "steve.png"
       }
     ]
   }

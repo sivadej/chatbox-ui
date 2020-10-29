@@ -9,7 +9,7 @@ font size 15px
 
 timestamp label 12px weight 400 rgb 97 96 97
 
-avatar img 36x36, button, 2px borderradius
+avatar img 36x36 (15*2.4), button, 2px borderradius
 
 light gray (message highlight, icon hover) rgb 248 248 248
 
