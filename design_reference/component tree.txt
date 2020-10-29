@@ -10,8 +10,8 @@ App
 
 
 
-    -Channel
-        -ChannelBar
+    -Channel (STORE STATE HERE)
+        -ChannelBar (channelinfo, userIconGroupAvatars, channel Count)
             -ChannelTitleSection
                 -lock/unlock
                 -channel label
@@ -26,7 +26,7 @@ App
                 -ChannelActionIcon(show channel details)
                     ***Tooltip
 
-        -ChatMessages
+        -ChatMessages (messages)
             ***DateLineBreakRow
                 -DateLineBreakSubMenu
             ***MessageRow

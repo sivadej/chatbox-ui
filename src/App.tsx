@@ -1,8 +1,12 @@
 import React from 'react';
 
-function App() {
+import './App.css';
+import Channel from './Channel';
+
+function App(): JSX.Element {
   return (
     <div>
+      app <Channel />
     </div>
   );
 }

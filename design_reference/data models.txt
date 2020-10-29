@@ -15,7 +15,7 @@
 
 messages[message: object]
 "message"
-    timestamp : Date
+    timestamp : ISO8601 string? Date Object?
     text : string
     displayName : string
     avatarUrl : string
