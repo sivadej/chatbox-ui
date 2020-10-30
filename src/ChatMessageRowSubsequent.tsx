@@ -8,7 +8,9 @@ function ChatMessageRowSubsequent({ message }) {
   return (
     <div className={styles.messageRow}>
       <div className={styles.messageRowLeft}>
-        <div className={styles.timestamp}>{convertDate(timestamp)}</div>
+        <div className={`${styles.timestamp} ${styles.hideUntilHover}`}>
+          {convertDate(timestamp)}
+        </div>
       </div>
       <div className={styles.messageRowRight}>
         <div className={styles.nameTimeRow}></div>

@@ -1,6 +1,6 @@
 .messageRow {
   display: flex;
-  direction: column;
+  flex-direction: row;
   padding: 0.3em;
   margin: 0;
 }
@@ -10,6 +10,8 @@
 }
 
 .messageRowLeft {
+  flex-basis: 40px;
+  flex-shrink: 0;
 }
 
 .messageRowRight {
@@ -38,4 +40,8 @@
 .timestamp {
   font-size: 0.8em;
   color: rgb(97, 96, 97);
+}
+
+.hidden {
+  display: none;
 }
