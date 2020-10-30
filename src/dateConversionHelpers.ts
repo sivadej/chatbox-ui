@@ -15,10 +15,12 @@ export const dateConversionISOtoShortTime = (isoStr: string): string =>
 // ISO8601 string -> boolean
 export const dateISOisToday = (isoStr: string): boolean => {
   // TODO: handle logic
+  return false;
 };
 
 // check if given date is one day before current date
 // ISO8601 string -> boolean
 export const dateISOwasYesterday = (isoStr: string): boolean => {
   // TODO: handle logic
+  return false;
 };

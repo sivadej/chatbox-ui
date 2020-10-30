@@ -2,7 +2,7 @@ import React from 'react';
 import ChannelTitleSection from './ChannelTitleSection';
 import ChannelActionIcons from './ChannelActionIcons';
 
-function ChannelBar({ info, userCount }): JSX.Element {
+function ChannelBar({ info, userCount }: ChannelBarProps): JSX.Element {
   return (
     <div>
       <div>ChannelBar component -</div>
@@ -10,6 +10,11 @@ function ChannelBar({ info, userCount }): JSX.Element {
       <ChannelActionIcons count={userCount} />
     </div>
   );
+}
+
+interface ChannelBarProps {
+  info: { name: string; type: string };
+  userCount: number;
 }
 
 export default ChannelBar;

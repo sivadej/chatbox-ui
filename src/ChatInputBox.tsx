@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 
-function ChatInputBox({ handleSend }) {
+function ChatInputBox({ handleSend }: ChatInputBoxProps): JSX.Element {
   const [text, setText] = useState('');
 
-  const handleClick = (e) => {
+  const handleClick = (e: any) => {
     e.preventDefault();
     console.log('ChatInputBox handleClick():', text);
     handleSend(text);
@@ -19,6 +19,10 @@ function ChatInputBox({ handleSend }) {
       <button onClick={(e) => handleClick(e)}>send</button>
     </div>
   );
+}
+
+interface ChatInputBoxProps {
+  handleSend: (msg: string) => void;
 }
 
 export default ChatInputBox;

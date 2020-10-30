@@ -1,14 +1,18 @@
 import React from 'react';
 import styles from './Avatar.module.css';
 
-function AvatarSmall({ imgUrl }) {
-  return (
-    <img
-      src='https://via.placeholder.com/36'
-      alt={imgUrl}
-      className={styles.avatarSmall}
-    />
-  );
+const DEFAULT_AVATAR_URL: string = './defaultAvatar.png';
+
+function AvatarSmall({
+  imgUrl = DEFAULT_AVATAR_URL,
+  altTag = 'avatar',
+}: AvatarSmallProps): JSX.Element {
+  return <img src={imgUrl} alt={altTag} className={styles.avatarSmall} />;
+}
+
+interface AvatarSmallProps {
+  imgUrl?: string;
+  altTag?: string;
 }
 
 export default AvatarSmall;

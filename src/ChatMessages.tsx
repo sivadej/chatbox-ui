@@ -8,17 +8,27 @@ import styles from './ChatMessages.module.css';
 
 // TODO: render LineBreakRow component between days.
 
-function ChatMessages({ messages }) {
+function ChatMessages({ messages }: any): JSX.Element {
   return (
     <div className={styles.container}>
       {messages &&
-        messages.map((msg, idx) => {
+        messages.map((msg: any, idx: number) => {
           if (idx !== 0 && messages[idx - 1].authorId === msg.authorId)
             return <ChatMessageRowSubsequent message={msg} />;
           else return <ChatMessageRow message={msg} />;
         })}
     </div>
   );
+}
+
+interface ChatMessagesProps {
+  messages: {
+    timestamp: string;
+    text: string;
+    authorId: number;
+    displayName: string;
+    avatarImg?: string;
+  };
 }
 
 export default ChatMessages;

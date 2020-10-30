@@ -3,13 +3,13 @@ import AvatarSmall from './AvatarSmall';
 import { dateConversionISOtoTime as convertDate } from './dateConversionHelpers';
 import styles from './ChatMessageRow.module.css';
 
-function ChatMessageRow({ message }) {
+function ChatMessageRow({ message }: ChatMessageRowProps): JSX.Element {
   const { text, timestamp, displayName, avatarImg } = message;
 
   return (
     <div className={styles.messageRow}>
       <div className={styles.messageRowLeft}>
-        <AvatarSmall imgUrl={avatarImg} />
+        <AvatarSmall imgUrl={avatarImg} altTag={displayName} />
       </div>
       <div className={styles.messageRowRight}>
         <div className={styles.nameTimeRow}>
@@ -20,6 +20,15 @@ function ChatMessageRow({ message }) {
       </div>
     </div>
   );
+}
+
+interface ChatMessageRowProps {
+  message: {
+    text: string;
+    timestamp: string;
+    displayName: string;
+    avatarImg?: string;
+  };
 }
 
 export default ChatMessageRow;
