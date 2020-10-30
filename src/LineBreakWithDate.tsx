@@ -1,5 +1,9 @@
 import React from 'react';
-import { dateISOisToday, dateISOwasYesterday } from './dateConversionHelpers';
+import {
+  dateISOisToday,
+  dateISOwasYesterday,
+  dateISOtoFormattedStr,
+} from './dateConversionHelpers';
 import styles from './LineBreakWithDate.module.css';
 
 // LineBreakWithDate component
@@ -11,7 +15,7 @@ function LineBreakWithDate({ timestamp }: any): JSX.Element {
   const formattedDate = (isoStr: string) => {
     if (dateISOisToday(isoStr)) return 'Today';
     else if (dateISOwasYesterday(isoStr)) return 'Yesterday';
-    else return `format me pls ${isoStr}`;
+    else return dateISOtoFormattedStr(isoStr);
   };
 
   return (

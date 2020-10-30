@@ -30,3 +30,7 @@ export const dateISOwasYesterday = (isoStr: string): boolean => {
 export const isSameDate = (isoStr1: string, isoStr2: string): boolean => {
   return (isoStr1.slice(0,10) === isoStr2.slice(0,10));
 }
+
+export const dateISOtoFormattedStr = (isoStr: string): string => {
+  return (new Date(isoStr)).toLocaleDateString('en-US',{weekday:'long', month:'long', day:'numeric'});
+}
