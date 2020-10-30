@@ -14,13 +14,20 @@ export const dateConversionISOtoShortTime = (isoStr: string): string =>
 // check if given date string is current date
 // ISO8601 string -> boolean
 export const dateISOisToday = (isoStr: string): boolean => {
-  // TODO: handle logic
-  return false;
+  return (isoStr.slice(0,10) === (new Date()).toISOString().slice(0,10)); // slice hours, minutes, seconds out of time string
 };
 
 // check if given date is one day before current date
 // ISO8601 string -> boolean
 export const dateISOwasYesterday = (isoStr: string): boolean => {
-  // TODO: handle logic
-  return false;
+  const yesterday = new Date();
+  yesterday.setDate(yesterday.getDate()-1);
+  return (yesterday.toISOString().slice(0,10) === isoStr.slice(0,10)); // slice hours, minutes, seconds out of time string
 };
+
+// check if two dates are the same. ignore time
+// ISO8601 strings -> boolean
+export const isSameDate = (isoStr1: string, isoStr2: string): boolean => {
+  
+  return true;
+}
