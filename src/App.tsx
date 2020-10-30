@@ -5,7 +5,7 @@ import Channel from './Channel';
 function App(): JSX.Element {
   return (
     <div>
-      app <Channel />
+      <Channel />
     </div>
   );
 }

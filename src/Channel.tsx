@@ -14,7 +14,6 @@ function Channel(): JSX.Element {
 
   return (
     <div>
-      <div>channel component</div>
       <ChannelBar info={data.channelInfo} userCount={data.users.length} />
       <ChatMessages messages={data.messages} />
       <ChatInputBox handleSend={handleSend} />

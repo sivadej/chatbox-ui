@@ -11,7 +11,6 @@ function ChatInputBox({ handleSend }: ChatInputBoxProps): JSX.Element {
 
   return (
     <div>
-      chat input box component
       <input
         type='text'
         value={text}

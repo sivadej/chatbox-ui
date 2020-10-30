@@ -4,11 +4,7 @@ function ChannelTitleSection({
   channelName,
   channelType,
 }: ChannelTitleSectionProps): JSX.Element {
-  return (
-    <div>
-      channel title component --- name: {channelName}, type: {channelType}
-    </div>
-  );
+  return <div>{`#${channelName} (${channelType})`}</div>;
 }
 
 // TODO: limit channelType in type def (ex: 'public', 'private', 'direct')
