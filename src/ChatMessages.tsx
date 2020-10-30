@@ -3,29 +3,42 @@ import ChatMessageRow from './ChatMessageRow';
 import ChatMessageRowSubsequent from './ChatMessageRowSubsequent';
 import styles from './ChatMessages.module.css';
 import LineBreakWithDate from './LineBreakWithDate';
+import { isSameDate } from './dateConversionHelpers';
 
 // render messages from array of objects.
 // use SubsequentMessageRow if previous message is same user.
-
-// TODO: render LineBreakRow component between days.
+// render LineBreakRow to separate messages by day.
+//
 
 function ChatMessages({ messages }: ChatMessagesProps): JSX.Element {
-  console.log('test heree');
   return (
     <div className={styles.container}>
       {messages &&
         messages.map((msg: any, idx: number) => {
+          //determine if line break needs to render
+          let lineBreakNeeded = true;
+          if (
+            idx !== 0 &&
+            isSameDate(messages[idx].timestamp, messages[idx - 1].timestamp)
+          ) {
+            lineBreakNeeded = false;
+          }
+
           if (idx !== 0 && messages[idx - 1].authorId === msg.authorId)
             return (
               <>
-                <LineBreakWithDate timestamp={msg.timestamp} />
+                {lineBreakNeeded ? (
+                  <LineBreakWithDate timestamp={msg.timestamp} />
+                ) : null}
                 <ChatMessageRowSubsequent message={msg} />
               </>
             );
           else
             return (
               <>
-                <LineBreakWithDate timestamp={msg.timestamp} />
+                {lineBreakNeeded ? (
+                  <LineBreakWithDate timestamp={msg.timestamp} />
+                ) : null}
                 <ChatMessageRow message={msg} />
               </>
             );

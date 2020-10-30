@@ -28,6 +28,5 @@ export const dateISOwasYesterday = (isoStr: string): boolean => {
 // check if two dates are the same. ignore time
 // ISO8601 strings -> boolean
 export const isSameDate = (isoStr1: string, isoStr2: string): boolean => {
-  
-  return true;
+  return (isoStr1.slice(0,10) === isoStr2.slice(0,10));
 }
