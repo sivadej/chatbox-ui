@@ -1,15 +1,16 @@
 import React from 'react';
 import ChatMessageRow from './ChatMessageRow';
 import ChatMessageRowSubsequent from './ChatMessageRowSubsequent';
+import styles from './ChatMessages.module.css';
 
 // render messages from array of objects.
-// render LineBreakRow between days.
 // use SubsequentMessageRow if previous message is same user.
 
-//prev author {messages[idx - 1] && messages[idx - 1].displayName}
+// TODO: render LineBreakRow component between days.
+
 function ChatMessages({ messages }) {
   return (
-    <div>
+    <div className={styles.container}>
       {messages &&
         messages.map((msg, idx) => {
           if (idx !== 0 && messages[idx - 1].authorId === msg.authorId)

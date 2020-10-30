@@ -1,0 +1,9 @@
+.avatarSmall {
+  border-radius: 10%;
+  width: 2.4em;
+  margin-right: 0.4em;
+}
+
+.avatarSmall:hover {
+  cursor: pointer;
+}
