@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
 
+// TODO: Maybe switch over to using Formik????
+
 function ChatInputBox({ handleSend }: ChatInputBoxProps): JSX.Element {
   const [text, setText] = useState('');
 
-  const handleClick = (e: any) => {
+  const handleClick = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     e.preventDefault();
     console.log('ChatInputBox handleClick():', text);
     handleSend(text);

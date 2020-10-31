@@ -1,11 +1,10 @@
 .lineBreakSection {
   background-color: white;
-  padding: 0.5em 0px;
+  padding: 0.5em 0;
 }
 
 .wrap {
   text-align: center;
-
   position: relative;
 }
 .links {
@@ -30,7 +29,7 @@
   font-size: 0.9em;
   font-weight: 600;
   padding: 0.5em 1em;
-  box-shadow: 0 1px 3px 0 rgb(0, 0, 0, 0.08);
+  box-shadow: 0 1px 0.05em 0 rgb(0, 0, 0, 0.08);
   border: 1px solid rgb(204, 204, 204);
-  border-radius: 24px;
+  border-radius: 1.6em;
 }

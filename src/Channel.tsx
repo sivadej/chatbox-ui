@@ -43,7 +43,7 @@ export interface IChatUser {
 
 export interface IChannelInfo {
   name: string;
-  type: string | 'private' | 'public' | 'direct';
+  type: string | 'private' | 'public' | 'direct'; //temporarily allowing string until i find out why this isn't jiving with compiler
 }
 
 export default Channel;

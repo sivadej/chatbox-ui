@@ -30,9 +30,8 @@ function ChatMessages({ messages }: ChatMessagesProps): JSX.Element {
             idx !== 0 &&
             !isLineBreakNeeded &&
             messages[idx - 1].authorId === msg.authorId
-          ) {
+          )
             isSubsequentMsg = true;
-          }
 
           //if (isSubsequentMsg)
           return (
