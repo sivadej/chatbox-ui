@@ -4,6 +4,7 @@ import ChatMessageRowSubsequent from './ChatMessageRowSubsequent';
 import styles from './ChatMessages.module.css';
 import LineBreakWithDate from './LineBreakWithDate';
 import { isSameDate } from './dateConversionHelpers';
+import { IMessage } from './Channel';
 
 // render messages from array of objects.
 // render SubsequentMessageRow component only if previous message is same user.
@@ -13,7 +14,7 @@ function ChatMessages({ messages }: ChatMessagesProps): JSX.Element {
   return (
     <div className={styles.container}>
       {messages &&
-        messages.map((msg: any, idx: number) => {
+        messages.map((msg: IMessage, idx: number) => {
           // determine if a line break needs to render above this message.
           let isLineBreakNeeded: boolean = true;
           if (
@@ -52,15 +53,7 @@ function ChatMessages({ messages }: ChatMessagesProps): JSX.Element {
 }
 
 interface ChatMessagesProps {
-  messages: Message[];
-}
-
-interface Message {
-  timestamp: string;
-  text: string;
-  authorId: number;
-  displayName: string;
-  avatarImg?: string;
+  messages: IMessage[];
 }
 
 export default ChatMessages;

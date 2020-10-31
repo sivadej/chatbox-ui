@@ -11,7 +11,7 @@ import styles from './LineBreakWithDate.module.css';
 // date string should display as 'Today' or 'Yesterday',
 // otherwise should be in this format: 'Monday, January 1st'
 
-function LineBreakWithDate({ timestamp }: any): JSX.Element {
+function LineBreakWithDate({ timestamp }: LineBreakWithDateProps): JSX.Element {
   const formattedDate = (isoStr: string) => {
     if (dateISOisToday(isoStr)) return 'Today';
     else if (dateISOwasYesterday(isoStr)) return 'Yesterday';
@@ -29,6 +29,10 @@ function LineBreakWithDate({ timestamp }: any): JSX.Element {
       </div>
     </div>
   );
+}
+
+interface LineBreakWithDateProps {
+  timestamp: string;
 }
 
 export default LineBreakWithDate;

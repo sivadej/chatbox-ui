@@ -1,6 +1,7 @@
 import React from 'react';
 import ChannelTitleSection from './ChannelTitleSection';
 import ChannelActionIcons from './ChannelActionIcons';
+import { IChannelInfo } from './Channel';
 
 function ChannelBar({ info, userCount }: ChannelBarProps): JSX.Element {
   return (
@@ -12,7 +13,7 @@ function ChannelBar({ info, userCount }: ChannelBarProps): JSX.Element {
 }
 
 interface ChannelBarProps {
-  info: { name: string; type: string };
+  info: IChannelInfo;
   userCount: number;
 }
 

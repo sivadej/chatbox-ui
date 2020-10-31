@@ -1,6 +1,7 @@
 import React from 'react';
 import { dateConversionISOtoShortTime as convertDate } from './dateConversionHelpers';
 import styles from './ChatMessageRow.module.css';
+import { IMessage } from './Channel';
 
 function ChatMessageRowSubsequent({
   message,
@@ -23,10 +24,7 @@ function ChatMessageRowSubsequent({
 }
 
 interface ChatMessageRowSubsequentProps {
-  message: {
-    text: string;
-    timestamp: string;
-  };
+  message: IMessage;
 }
 
 export default ChatMessageRowSubsequent;

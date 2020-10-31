@@ -5,10 +5,9 @@ import ChatMessages from './ChatMessages';
 import sampleData from './sampleData.json';
 
 function Channel(): JSX.Element {
-  const { data }: any = sampleData;
-  const tempCurrUser = { id: 1 };
+  const data: IChannel = { ...sampleData.data };
 
-  const handleSend = (msg: any) => {
+  const handleSend = (msg: string) => {
     console.log('Channel handleSend():', msg);
   };
 
@@ -21,23 +20,30 @@ function Channel(): JSX.Element {
   );
 }
 
-interface ChannelData {
-  data: {
-    channelInfo: { name: string; type: string };
-    users: {
-      id: number;
-      fullName: string;
-      displayName: string;
-      avatarImg?: string;
-    }[];
-    messages: {
-      timestamp: string;
-      text: string;
-      authorId: number;
-      displayName: string;
-      avatarImg?: string;
-    }[];
-  };
+interface IChannel {
+  channelInfo: IChannelInfo;
+  users: IChatUser[];
+  messages: IMessage[];
+}
+
+export interface IMessage {
+  timestamp: string;
+  text: string;
+  authorId?: number;
+  displayName: string;
+  avatarImg?: string;
+}
+
+export interface IChatUser {
+  id: number;
+  fullName: string;
+  displayName: string;
+  avatarImg?: string;
+}
+
+export interface IChannelInfo {
+  name: string;
+  type: string | 'private' | 'public' | 'direct';
 }
 
 export default Channel;

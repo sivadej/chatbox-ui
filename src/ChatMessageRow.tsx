@@ -2,6 +2,7 @@ import React from 'react';
 import AvatarSmall from './AvatarSmall';
 import { dateConversionISOtoTime as convertDate } from './dateConversionHelpers';
 import styles from './ChatMessageRow.module.css';
+import { IMessage } from './Channel';
 
 function ChatMessageRow({ message }: ChatMessageRowProps): JSX.Element {
   const { text, timestamp, displayName, avatarImg } = message;
@@ -23,12 +24,7 @@ function ChatMessageRow({ message }: ChatMessageRowProps): JSX.Element {
 }
 
 interface ChatMessageRowProps {
-  message: {
-    text: string;
-    timestamp: string;
-    displayName: string;
-    avatarImg?: string;
-  };
+  message: IMessage;
 }
 
 export default ChatMessageRow;
