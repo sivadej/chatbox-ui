@@ -1,11 +1,16 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import ChannelBar from './ChannelBar';
 import ChatInputBox from './ChatInputBox';
 import ChatMessages from './ChatMessages';
-import sampleData from './sampleData.json';
+import { loadInitialData, submitMessage } from './fakeServer/server';
 
 function Channel(): JSX.Element {
-  const data: IChannel = { ...sampleData.data };
+  //const data: IChannel = { ...sampleData.data };
+  const [data, setData] = useState(loadInitialData());
+
+  useEffect(() => {
+    console.log('useEffect called');
+  }, []);
 
   const handleSend = (msg: string) => {
     console.log('Channel handleSend():', msg);
@@ -20,7 +25,7 @@ function Channel(): JSX.Element {
   );
 }
 
-interface IChannel {
+export interface IChannel {
   channelInfo: IChannelInfo;
   users: IChatUser[];
   messages: IMessage[];
