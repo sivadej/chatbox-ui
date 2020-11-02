@@ -12,6 +12,11 @@ export function loadInitialData() {
 
 export function submitMessage() {
   console.log('submitMessage called');
+
+  setTimeout(()=>{
+    console.log('message successfully sent')
+  },1000);
+
   const testMsg: IMessage = {
     timestamp: ((new Date()).toUTCString()),
     text: 'from testmessage',

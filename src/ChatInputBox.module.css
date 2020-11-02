@@ -1,0 +1,38 @@
+.container {
+  border: 1px solid black;
+  border-radius: 0.2em;
+  margin: 1.5em 0.5em;
+  padding: 0;
+}
+
+.inputBox {
+  border: 0;
+  background-color: inherit;
+  width: 100%;
+}
+
+::placeholder {
+  opacity: 0.3;
+}
+
+::-ms-input-placeholder {
+  color: #757575;
+}
+
+.messageRow {
+  background-color: yellow;
+  padding: 0.5em;
+  display: flex;
+}
+
+.iconRow {
+  padding: 0.5em;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  background-color: blue;
+}
+
+.icon {
+  flex: none;
+}
