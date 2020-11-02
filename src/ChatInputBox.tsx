@@ -32,8 +32,8 @@ function ChatInputBox({ handleSend }: ChatInputBoxProps): JSX.Element {
         <button
           onClick={(e) => handleClick(e)}
           disabled={isDisabled}
-          className={styles.icon}>
-          send
+          className={styles.btnSend}>
+          Send
         </button>
       </div>
     </div>
