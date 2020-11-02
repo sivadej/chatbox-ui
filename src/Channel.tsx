@@ -14,6 +14,7 @@ function Channel(): JSX.Element {
 
   const handleSend = (msg: string) => {
     console.log('Channel handleSend():', msg);
+    submitMessage();
   };
 
   return (
