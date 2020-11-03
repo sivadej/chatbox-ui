@@ -3,9 +3,9 @@ import AvatarSmall from './AvatarSmall';
 import {
   dateConversionISOtoTime as convertDate,
   dateConversionISOtoShortTime as convertDateShort,
-} from './dateConversionHelpers';
+} from './../helpers/dateConversionHelpers';
 import styles from './ChatMessageRow.module.css';
-import { IMessage } from './Channel';
+import { IMessage } from './ChatBoxUI';
 
 interface ChatMessageRowProps {
   message: IMessage;

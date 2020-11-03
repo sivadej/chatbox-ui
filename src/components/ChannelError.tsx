@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from './Channel.module.css';
+import styles from './ChatBoxUI.module.css';
 
 const DEFAULT_ERROR_MSG = 'An error occurred while loading this chat...';
 

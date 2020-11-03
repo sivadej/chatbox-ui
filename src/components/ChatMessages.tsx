@@ -2,8 +2,8 @@ import React from 'react';
 import ChatMessageRow from './ChatMessageRow';
 import styles from './ChatMessages.module.css';
 import LineBreakWithDate from './LineBreakWithDate';
-import { isSameDate } from './dateConversionHelpers';
-import { IMessage } from './Channel';
+import { isSameDate } from './../helpers/dateConversionHelpers';
+import { IMessage } from './ChatBoxUI';
 
 // render messages from array of objects.
 // render SubsequentMessageRow component only if previous message is same user.

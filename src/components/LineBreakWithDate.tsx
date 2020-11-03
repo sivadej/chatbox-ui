@@ -3,7 +3,7 @@ import {
   dateISOisToday,
   dateISOwasYesterday,
   dateISOtoFormattedStr,
-} from './dateConversionHelpers';
+} from './../helpers/dateConversionHelpers';
 import styles from './LineBreakWithDate.module.css';
 
 // LineBreakWithDate component

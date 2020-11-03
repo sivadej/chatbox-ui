@@ -4,9 +4,9 @@ import ChatInput from './ChatInput';
 import ChatMessages from './ChatMessages';
 import Spinner from './Spinner';
 import ChannelError from './ChannelError';
-import styles from './Channel.module.css';
+import styles from './ChatBoxUI.module.css';
 
-interface ChannelUIProps {
+interface ChatBoxUIProps {
   children: IChannel;
   isLoading: boolean;
   isError: boolean;
@@ -14,7 +14,7 @@ interface ChannelUIProps {
   onSend: (text: string) => void;
 }
 
-function Channel(props: ChannelUIProps): JSX.Element {
+function ChatBoxUI(props: ChatBoxUIProps): JSX.Element {
   const { isLoading, isError, onSend, children, hideStatusBar = true } = props;
   const data = children;
 
@@ -60,4 +60,4 @@ export interface IChannelInfo {
   type: string | 'PUBLIC' | 'PRIVATE' | 'DIRECT'; //temporarily allowing string until i find out why this isn't jiving with compiler
 }
 
-export default Channel;
+export default ChatBoxUI;

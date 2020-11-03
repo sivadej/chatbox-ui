@@ -1,8 +1,8 @@
-// mock functionality for Channel UI component.
+// mock functionality for ChatBox UI component.
 
 import React, { useState } from 'react';
 import './App.css';
-import Channel from './Channel';
+import ChatBoxUI from './components/ChatBoxUI';
 
 import {
   loadInitialData,
@@ -71,9 +71,9 @@ function App(): JSX.Element {
         <div>{error ? 'has error' : 'no error'}</div>
       </div>
 
-      <Channel isLoading={loading} isError={error} onSend={handleSend}>
+      <ChatBoxUI isLoading={loading} isError={error} onSend={handleSend}>
         {data}
-      </Channel>
+      </ChatBoxUI>
     </div>
   );
 }

@@ -1,7 +1,7 @@
 import React from 'react';
 import ChannelTitleSection from './ChannelTitleSection';
 import ChannelActionIcons from './ChannelActionIcons';
-import { IChannelInfo } from './Channel';
+import { IChannelInfo } from './ChatBoxUI';
 
 interface ChannelBarProps {
   info: IChannelInfo;

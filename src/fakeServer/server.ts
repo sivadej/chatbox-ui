@@ -1,6 +1,6 @@
 // fake server to mess with the chatbox
-import fakeData from './../sampleData.json';
-import {IChannel, IMessage} from './../Channel';
+import fakeData from './sampleData.json';
+import {IChannel, IMessage} from './../components/ChatBoxUI';
 
 const data: IChannel = { ...fakeData.data };
 
