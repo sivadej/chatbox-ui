@@ -60,22 +60,20 @@ function App(): JSX.Element {
         }}>
         <button onClick={() => setLoading(!loading)}>toggle loading</button>
         <button onClick={() => setError(!error)}>toggle error</button>
-        <div>
+        {/* <div>
           <button onClick={() => sendExpectingError('this should not work')}>
             attempt send w/ failure
           </button>
-        </div>
+        </div> */}
         <div>states:</div>
+        <div>messages: {data.messages.length}</div>
         <div>{loading ? 'loading' : 'loaded'}</div>
         <div>{error ? 'has error' : 'no error'}</div>
       </div>
 
-      <Channel
-        isLoading={loading}
-        hasError={error}
-        data={data}
-        onSend={handleSend}
-      />
+      <Channel isLoading={loading} isError={error} onSend={handleSend}>
+        {data}
+      </Channel>
     </div>
   );
 }

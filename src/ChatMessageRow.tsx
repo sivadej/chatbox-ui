@@ -15,7 +15,7 @@ interface ChatMessageRowProps {
 function ChatMessageRow(props: ChatMessageRowProps): JSX.Element {
   const { message, isSubsequentMsg } = props;
   const { text, timestamp, displayName, avatarImg, status } = message;
-  const hasError = status === 'ERROR';
+  const isError = status === 'ERROR';
 
   return !isSubsequentMsg ? (
     <div className={styles.messageRow}>
@@ -28,9 +28,7 @@ function ChatMessageRow(props: ChatMessageRowProps): JSX.Element {
           <div className={styles.timestamp}>{convertDate(timestamp)}</div>
         </div>
         <div className={styles.messageBody}>{text}</div>
-        <div className={styles.error}>
-          {hasError ? DEFAULT_ERROR_MSG : null}
-        </div>
+        <div className={styles.error}>{isError ? DEFAULT_ERROR_MSG : null}</div>
       </div>
     </div>
   ) : (
@@ -43,9 +41,7 @@ function ChatMessageRow(props: ChatMessageRowProps): JSX.Element {
       <div className={styles.messageRowRight}>
         <div className={styles.nameTimeRow}></div>
         <div className={styles.messageBody}>{text}</div>
-        <div className={styles.error}>
-          {hasError ? DEFAULT_ERROR_MSG : null}
-        </div>
+        <div className={styles.error}>{isError ? DEFAULT_ERROR_MSG : null}</div>
       </div>
     </div>
   );

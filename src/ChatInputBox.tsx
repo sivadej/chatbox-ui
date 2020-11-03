@@ -8,18 +8,19 @@ interface ChatInputBoxProps {
 function ChatInputBox(props: ChatInputBoxProps): JSX.Element {
   const { onSend } = props;
   const [text, setText] = useState('');
-  const [isDisabled, setIsDisabled] = useState(true);
+  const [isBtnDisabled, setIsBtnDisabled] = useState(true);
 
   const handleSend = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     e.preventDefault();
-    if (!isDisabled) {
+    if (!isBtnDisabled) {
       onSend(text.trim());
       setText('');
+      setIsBtnDisabled(true);
     }
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setIsDisabled(e.target.value.trim().length === 0);
+    setIsBtnDisabled(e.target.value.trim().length === 0);
     setText(e.target.value);
   };
 
@@ -37,7 +38,7 @@ function ChatInputBox(props: ChatInputBoxProps): JSX.Element {
         <div className={styles.iconRow}>
           <button
             onClick={(e) => handleSend(e)}
-            disabled={isDisabled}
+            disabled={isBtnDisabled}
             className={styles.btnSend}>
             Send
           </button>

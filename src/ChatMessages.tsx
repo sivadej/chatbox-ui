@@ -38,13 +38,14 @@ function ChatMessages(props: ChatMessagesProps): JSX.Element {
         )
           isSubsequentMsg = true;
 
+        // TODO: key={idx} is not recommended. maybe modify props to require a unique msg id
         return (
-          <>
+          <div key={idx}>
             {isLineBreakNeeded ? (
               <LineBreakWithDate timestamp={msg.timestamp} />
             ) : null}
             <ChatMessageRow message={msg} isSubsequentMsg={isSubsequentMsg} />
-          </>
+          </div>
         );
       })}
     </div>

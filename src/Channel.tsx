@@ -7,16 +7,17 @@ import ChannelError from './ChannelError';
 import styles from './Channel.module.css';
 
 interface ChannelUIProps {
-  data: IChannel;
+  children: IChannel;
   isLoading: boolean;
-  hasError: boolean;
+  isError: boolean;
   onSend: (text: string) => void;
 }
 
 function Channel(props: ChannelUIProps): JSX.Element {
-  const { isLoading, hasError, data, onSend } = props;
+  const { isLoading, isError, onSend, children } = props;
+  const data = children;
 
-  if (hasError) return <ChannelError />;
+  if (isError) return <ChannelError />;
   if (isLoading) return <Spinner />;
 
   return (
