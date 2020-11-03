@@ -6,7 +6,8 @@ import { IMessage } from './Channel';
 function ChatMessageRowSubsequent({
   message,
 }: ChatMessageRowSubsequentProps): JSX.Element {
-  const { text, timestamp } = message;
+  const { text, timestamp, status } = message;
+  const hasError = status === 'ERROR';
 
   return (
     <div className={styles.messageRow}>
@@ -18,6 +19,9 @@ function ChatMessageRowSubsequent({
       <div className={styles.messageRowRight}>
         <div className={styles.nameTimeRow}></div>
         <div className={styles.messageBody}>{text}</div>
+        <div className={styles.error}>
+          {hasError ? 'A problem occurred when sending this message.' : null}
+        </div>
       </div>
     </div>
   );

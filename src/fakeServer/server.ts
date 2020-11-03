@@ -12,19 +12,22 @@ export function loadInitialData() {
 }
 
 export function submitMessage(msg: IMessage, channel: IChannel): IChannel {
-  // console.log('submitMessage called');
-  // console.log('msg obj received', msg)
-
   setTimeout(()=>{
     console.log('SERVER: message successfully sent')
   },1000);
-
-  // TODO: mock network error 
-
-  // add this message to Messages array
-  const updatedMessages = [...channel.messages, msg]
-  const updatedData = {...channel, messages: updatedMessages}
-
-  // return data with updated message array
+  const updatedData = {...channel, messages: [...channel.messages, msg]}
+  console.log(updatedData)
   return updatedData;
+}
+
+export function submitMessageWithError(msg: IMessage, channel: IChannel): IChannel {
+  console.log('SERVER: message successfully received. Will return with error in 1000ms');
+  setTimeout(()=>{
+    const badMsg = {...msg, status: 'ERROR', text:'hey'};
+    const updatedData = {...channel, messages: [...channel.messages, badMsg]}
+    console.log('SERVER: error. message was not sent.');
+    submitMessage(badMsg, channel);
+  },1000);
+  const optimisticUpdate = {...channel, messages: [...channel.messages, msg]}
+  return optimisticUpdate;
 }

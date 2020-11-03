@@ -4,7 +4,11 @@ import React, { useState } from 'react';
 import './App.css';
 import Channel from './Channel';
 
-import { loadInitialData, submitMessage } from './fakeServer/server';
+import {
+  loadInitialData,
+  submitMessage,
+  submitMessageWithError,
+} from './fakeServer/server';
 const req = loadInitialData();
 
 const testUser: any = {
@@ -19,7 +23,18 @@ function App(): JSX.Element {
   const handleSend = (msg: string): void => {
     const res = submitMessage(
       {
-        messageId: 9999,
+        timestamp: new Date().toISOString(),
+        text: msg,
+        displayName: testUser.displayName,
+      },
+      data
+    );
+    setData(res);
+  };
+
+  const sendExpectingError = (msg: string): void => {
+    const res = submitMessageWithError(
+      {
         timestamp: new Date().toISOString(),
         text: msg,
         displayName: testUser.displayName,
@@ -35,6 +50,7 @@ function App(): JSX.Element {
         style={{
           backgroundColor: 'black',
           color: 'white',
+          fontSize: '0.9em',
           paddingBottom: '10px',
           marginBottom: '10px',
           position: 'fixed',
@@ -44,7 +60,12 @@ function App(): JSX.Element {
         }}>
         <button onClick={() => setLoading(!loading)}>toggle loading</button>
         <button onClick={() => setError(!error)}>toggle error</button>
-        <div>test app. dev stuff. states:</div>
+        <div>
+          <button onClick={() => sendExpectingError('this should not work')}>
+            attempt send w/ failure
+          </button>
+        </div>
+        <div>states:</div>
         <div>{loading ? 'loading' : 'loaded'}</div>
         <div>{error ? 'has error' : 'no error'}</div>
       </div>

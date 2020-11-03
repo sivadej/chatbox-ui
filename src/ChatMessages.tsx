@@ -10,7 +10,14 @@ import { IMessage } from './Channel';
 // render SubsequentMessageRow component only if previous message is same user.
 // render LineBreakRow to separate messages by day.
 // first message of each new day should never be a subsequent message.
-function ChatMessages({ messages }: ChatMessagesProps): JSX.Element {
+
+interface ChatMessagesProps {
+  messages: IMessage[];
+}
+
+function ChatMessages(props: ChatMessagesProps): JSX.Element {
+  const { messages } = props;
+
   return (
     <div className={styles.container}>
       {messages.map((msg: IMessage, idx: number) => {
@@ -32,26 +39,21 @@ function ChatMessages({ messages }: ChatMessagesProps): JSX.Element {
         )
           isSubsequentMsg = true;
 
-        //if (isSubsequentMsg)
         return (
           <>
             {isLineBreakNeeded ? (
               <LineBreakWithDate timestamp={msg.timestamp} />
             ) : null}
             {isSubsequentMsg ? (
-              <ChatMessageRowSubsequent message={msg} key={msg.messageId} />
+              <ChatMessageRowSubsequent message={msg} />
             ) : (
-              <ChatMessageRow message={msg} key={msg.messageId} />
+              <ChatMessageRow message={msg} />
             )}
           </>
         );
       })}
     </div>
   );
-}
-
-interface ChatMessagesProps {
-  messages: IMessage[];
 }
 
 export default ChatMessages;

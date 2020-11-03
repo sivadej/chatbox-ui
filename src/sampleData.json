@@ -103,7 +103,8 @@
         "text": "see ya later",
         "authorId": 3,
         "displayName": "steve",
-        "avatarImg": "https://randomuser.me/api/portraits/men/21.jpg"
+        "avatarImg": "https://randomuser.me/api/portraits/men/21.jpg",
+        "status": "ERROR"
       }
     ]
   }

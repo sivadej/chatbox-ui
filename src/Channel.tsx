@@ -6,7 +6,16 @@ import Spinner from './Spinner';
 import ChannelError from './ChannelError';
 import styles from './Channel.module.css';
 
-function Channel({ isLoading, hasError, data, onSend }: any): JSX.Element {
+interface ChannelUIProps {
+  data: IChannel;
+  isLoading: boolean;
+  hasError: boolean;
+  onSend: (text: string) => void;
+}
+
+function Channel(props: ChannelUIProps): JSX.Element {
+  const { isLoading, hasError, data, onSend } = props;
+
   if (hasError) return <ChannelError />;
   if (isLoading) return <Spinner />;
 
@@ -26,12 +35,13 @@ export interface IChannel {
 }
 
 export interface IMessage {
-  messageId: number;
   timestamp: string;
   text: string;
   authorId?: number;
   displayName: string;
   avatarImg?: string;
+  id?: number;
+  status?: string;
 }
 
 export interface IChatUser {
@@ -43,7 +53,7 @@ export interface IChatUser {
 
 export interface IChannelInfo {
   name: string;
-  type: string | 'private' | 'public' | 'direct'; //temporarily allowing string until i find out why this isn't jiving with compiler
+  type: string | 'PUBLIC' | 'PRIVATE' | 'DIRECT'; //temporarily allowing string until i find out why this isn't jiving with compiler
 }
 
 export default Channel;
