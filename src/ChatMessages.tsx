@@ -13,40 +13,39 @@ import { IMessage } from './Channel';
 function ChatMessages({ messages }: ChatMessagesProps): JSX.Element {
   return (
     <div className={styles.container}>
-      {messages &&
-        messages.map((msg: IMessage, idx: number) => {
-          // determine if a line break needs to render above this message.
-          let isLineBreakNeeded: boolean = true;
-          if (
-            idx !== 0 &&
-            isSameDate(messages[idx].timestamp, messages[idx - 1].timestamp)
-          ) {
-            isLineBreakNeeded = false;
-          }
+      {messages.map((msg: IMessage, idx: number) => {
+        // determine if a line break needs to render above this message.
+        let isLineBreakNeeded: boolean = true;
+        if (
+          idx !== 0 &&
+          isSameDate(messages[idx].timestamp, messages[idx - 1].timestamp)
+        ) {
+          isLineBreakNeeded = false;
+        }
 
-          // determine if this is a subsequent message.
-          let isSubsequentMsg: boolean = false;
-          if (
-            idx !== 0 &&
-            !isLineBreakNeeded &&
-            messages[idx - 1].authorId === msg.authorId
-          )
-            isSubsequentMsg = true;
+        // determine if this is a subsequent message.
+        let isSubsequentMsg: boolean = false;
+        if (
+          idx !== 0 &&
+          !isLineBreakNeeded &&
+          messages[idx - 1].authorId === msg.authorId
+        )
+          isSubsequentMsg = true;
 
-          //if (isSubsequentMsg)
-          return (
-            <>
-              {isLineBreakNeeded ? (
-                <LineBreakWithDate timestamp={msg.timestamp} />
-              ) : null}
-              {isSubsequentMsg ? (
-                <ChatMessageRowSubsequent message={msg} />
-              ) : (
-                <ChatMessageRow message={msg} />
-              )}
-            </>
-          );
-        })}
+        //if (isSubsequentMsg)
+        return (
+          <>
+            {isLineBreakNeeded ? (
+              <LineBreakWithDate timestamp={msg.timestamp} />
+            ) : null}
+            {isSubsequentMsg ? (
+              <ChatMessageRowSubsequent message={msg} key={msg.messageId} />
+            ) : (
+              <ChatMessageRow message={msg} key={msg.messageId} />
+            )}
+          </>
+        );
+      })}
     </div>
   );
 }

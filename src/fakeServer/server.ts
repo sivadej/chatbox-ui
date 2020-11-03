@@ -1,27 +1,30 @@
 // fake server to mess with the chatbox
-
 import fakeData from './../sampleData.json';
 import {IChannel, IMessage} from './../Channel';
 
 const data: IChannel = { ...fakeData.data };
 
 export function loadInitialData() {
-  console.log('initial load',data)
-  return data;
+  setTimeout(()=>{
+    console.log('getting initial data');
+  },1000);
+  return {loading: false, error: false, data: data};
 }
 
-export function submitMessage() {
-  console.log('submitMessage called');
+export function submitMessage(msg: IMessage, channel: IChannel): IChannel {
+  // console.log('submitMessage called');
+  // console.log('msg obj received', msg)
 
   setTimeout(()=>{
-    console.log('message successfully sent')
+    console.log('SERVER: message successfully sent')
   },1000);
 
-  const testMsg: IMessage = {
-    timestamp: ((new Date()).toUTCString()),
-    text: 'from testmessage',
-    displayName: 'test'
-  }
+  // TODO: mock network error 
 
-  console.log(testMsg)
+  // add this message to Messages array
+  const updatedMessages = [...channel.messages, msg]
+  const updatedData = {...channel, messages: updatedMessages}
+
+  // return data with updated message array
+  return updatedData;
 }

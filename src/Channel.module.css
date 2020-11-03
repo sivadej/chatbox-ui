@@ -1,0 +1,50 @@
+.channelContainer {
+  -webkit-animation: fade 500ms; /* Safari 4+ */
+  -moz-animation: fade 500ms; /* Fx 5+ */
+  -o-animation: fade 500ms; /* Opera 12+ */
+  animation: fade 500ms; /* IE 10+, Fx 29+ */
+}
+
+.error {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+}
+
+.errorText {
+  color: red;
+  align-self: center;
+}
+
+@-webkit-keyframes fade {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+@-moz-keyframes fade {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+@-o-keyframes fade {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+@keyframes fade {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}

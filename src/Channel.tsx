@@ -1,27 +1,20 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import ChannelBar from './ChannelBar';
 import ChatInputBox from './ChatInputBox';
 import ChatMessages from './ChatMessages';
-import { loadInitialData, submitMessage } from './fakeServer/server';
+import Spinner from './Spinner';
+import ChannelError from './ChannelError';
+import styles from './Channel.module.css';
 
-function Channel(): JSX.Element {
-  //const data: IChannel = { ...sampleData.data };
-  const [data, setData] = useState(loadInitialData());
-
-  useEffect(() => {
-    console.log('useEffect called');
-  }, []);
-
-  const handleSend = (msg: string) => {
-    console.log('Channel handleSend():', msg);
-    submitMessage();
-  };
+function Channel({ isLoading, hasError, data, onSend }: any): JSX.Element {
+  if (hasError) return <ChannelError />;
+  if (isLoading) return <Spinner />;
 
   return (
-    <div>
+    <div className={styles.channelContainer}>
       <ChannelBar info={data.channelInfo} userCount={data.users.length} />
       <ChatMessages messages={data.messages} />
-      <ChatInputBox handleSend={handleSend} />
+      <ChatInputBox onSend={onSend} />
     </div>
   );
 }
@@ -33,6 +26,7 @@ export interface IChannel {
 }
 
 export interface IMessage {
+  messageId: number;
   timestamp: string;
   text: string;
   authorId?: number;

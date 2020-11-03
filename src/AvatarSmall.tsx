@@ -1,7 +1,8 @@
 import React from 'react';
 import styles from './Avatar.module.css';
 
-const DEFAULT_AVATAR_URL: string = './defaultAvatar.png';
+const DEFAULT_AVATAR_URL: string =
+  'https://i0.wp.com/davismarketingcompany.com/wp-content/uploads/2016/01/avatar_placeholder_small.png?w=300&ssl=1';
 
 function AvatarSmall({
   imgUrl = DEFAULT_AVATAR_URL,

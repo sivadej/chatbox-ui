@@ -2,46 +2,49 @@ import React, { useState } from 'react';
 
 import styles from './ChatInputBox.module.css';
 
-function ChatInputBox({ handleSend }: ChatInputBoxProps): JSX.Element {
+function ChatInputBox({ onSend }: ChatInputBoxProps): JSX.Element {
   const [text, setText] = useState('');
-  const [isDisabled, setIsDisabled] = useState(false);
+  const [isDisabled, setIsDisabled] = useState(true);
 
-  const handleClick = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+  const handleSend = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     e.preventDefault();
-    console.log('ChatInputBox handleClick():', text);
-    handleSend(text);
+    if (!isDisabled) {
+      onSend(text.trim());
+      setText('');
+    }
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    console.log('ChatInputBox handleChange() called');
     setIsDisabled(e.target.value.trim().length === 0);
     setText(e.target.value);
   };
 
   return (
     <div className={styles.container}>
-      <div className={styles.messageRow}>
-        <input
-          className={styles.inputBox}
-          type='text'
-          value={text}
-          placeholder='Message'
-          onChange={(e) => handleChange(e)}></input>
-      </div>
-      <div className={styles.iconRow}>
-        <button
-          onClick={(e) => handleClick(e)}
-          disabled={isDisabled}
-          className={styles.btnSend}>
-          Send
-        </button>
-      </div>
+      <form>
+        <div className={styles.messageRow}>
+          <input
+            className={styles.inputBox}
+            type='text'
+            value={text}
+            placeholder='Message'
+            onChange={(e) => handleChange(e)}></input>
+        </div>
+        <div className={styles.iconRow}>
+          <button
+            onClick={(e) => handleSend(e)}
+            disabled={isDisabled}
+            className={styles.btnSend}>
+            Send
+          </button>
+        </div>
+      </form>
     </div>
   );
 }
 
 interface ChatInputBoxProps {
-  handleSend: (msg: string) => void;
+  onSend: (msg: string) => void;
 }
 
 export default ChatInputBox;
