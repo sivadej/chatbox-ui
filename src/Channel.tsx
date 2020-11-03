@@ -1,6 +1,6 @@
 import React from 'react';
 import ChannelBar from './ChannelBar';
-import ChatInputBox from './ChatInputBox';
+import ChatInput from './ChatInput';
 import ChatMessages from './ChatMessages';
 import Spinner from './Spinner';
 import ChannelError from './ChannelError';
@@ -10,11 +10,12 @@ interface ChannelUIProps {
   children: IChannel;
   isLoading: boolean;
   isError: boolean;
+  hideStatusBar?: boolean;
   onSend: (text: string) => void;
 }
 
 function Channel(props: ChannelUIProps): JSX.Element {
-  const { isLoading, isError, onSend, children } = props;
+  const { isLoading, isError, onSend, children, hideStatusBar = true } = props;
   const data = children;
 
   if (isError) return <ChannelError />;
@@ -22,13 +23,11 @@ function Channel(props: ChannelUIProps): JSX.Element {
 
   return (
     <div className={styles.channelContainer}>
-      <ChannelBar
-        info={data.channelInfo}
-        userCount={data.users.length}
-        hideStatusBar
-      />
+      {!hideStatusBar ? (
+        <ChannelBar info={data.channelInfo} userCount={data.users.length} />
+      ) : null}
       <ChatMessages messages={data.messages} />
-      <ChatInputBox onSend={onSend} />
+      <ChatInput onSend={onSend} />
     </div>
   );
 }

@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
-import styles from './ChatInputBox.module.css';
+import styles from './ChatInput.module.css';
 
-interface ChatInputBoxProps {
+interface ChatInputProps {
   onSend: (msg: string) => void;
 }
 
-function ChatInputBox(props: ChatInputBoxProps): JSX.Element {
+function ChatInput(props: ChatInputProps): JSX.Element {
   const { onSend } = props;
   const [text, setText] = useState('');
   const [isBtnDisabled, setIsBtnDisabled] = useState(true);
@@ -48,4 +48,4 @@ function ChatInputBox(props: ChatInputBoxProps): JSX.Element {
   );
 }
 
-export default ChatInputBox;
+export default ChatInput;
