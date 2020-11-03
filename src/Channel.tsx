@@ -21,7 +21,11 @@ function Channel(props: ChannelUIProps): JSX.Element {
 
   return (
     <div className={styles.channelContainer}>
-      <ChannelBar info={data.channelInfo} userCount={data.users.length} />
+      <ChannelBar
+        info={data.channelInfo}
+        userCount={data.users.length}
+        hideStatusBar
+      />
       <ChatMessages messages={data.messages} />
       <ChatInputBox onSend={onSend} />
     </div>

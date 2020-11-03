@@ -1,6 +1,5 @@
 import React from 'react';
 import ChatMessageRow from './ChatMessageRow';
-import ChatMessageRowSubsequent from './ChatMessageRowSubsequent';
 import styles from './ChatMessages.module.css';
 import LineBreakWithDate from './LineBreakWithDate';
 import { isSameDate } from './dateConversionHelpers';
@@ -44,11 +43,7 @@ function ChatMessages(props: ChatMessagesProps): JSX.Element {
             {isLineBreakNeeded ? (
               <LineBreakWithDate timestamp={msg.timestamp} />
             ) : null}
-            {isSubsequentMsg ? (
-              <ChatMessageRowSubsequent message={msg} />
-            ) : (
-              <ChatMessageRow message={msg} />
-            )}
+            <ChatMessageRow message={msg} isSubsequentMsg={isSubsequentMsg} />
           </>
         );
       })}

@@ -1,8 +1,12 @@
 import React, { useState } from 'react';
-
 import styles from './ChatInputBox.module.css';
 
-function ChatInputBox({ onSend }: ChatInputBoxProps): JSX.Element {
+interface ChatInputBoxProps {
+  onSend: (msg: string) => void;
+}
+
+function ChatInputBox(props: ChatInputBoxProps): JSX.Element {
+  const { onSend } = props;
   const [text, setText] = useState('');
   const [isDisabled, setIsDisabled] = useState(true);
 
@@ -41,10 +45,6 @@ function ChatInputBox({ onSend }: ChatInputBoxProps): JSX.Element {
       </form>
     </div>
   );
-}
-
-interface ChatInputBoxProps {
-  onSend: (msg: string) => void;
 }
 
 export default ChatInputBox;

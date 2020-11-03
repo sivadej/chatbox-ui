@@ -3,18 +3,27 @@ import ChannelTitleSection from './ChannelTitleSection';
 import ChannelActionIcons from './ChannelActionIcons';
 import { IChannelInfo } from './Channel';
 
-function ChannelBar({ info, userCount }: ChannelBarProps): JSX.Element {
-  return (
-    <div>
-      <ChannelTitleSection channelName={info.name} channelType={info.type} />
-      <ChannelActionIcons count={userCount} />
-    </div>
-  );
-}
-
 interface ChannelBarProps {
   info: IChannelInfo;
   userCount: number;
+  hideStatusBar: boolean;
+}
+
+function ChannelBar(props: ChannelBarProps): JSX.Element {
+  const { info, userCount, hideStatusBar } = props;
+  return (
+    <div>
+      {!hideStatusBar ? (
+        <>
+          <ChannelTitleSection
+            channelName={info.name}
+            channelType={info.type}
+          />
+          <ChannelActionIcons count={userCount} />
+        </>
+      ) : null}
+    </div>
+  );
 }
 
 export default ChannelBar;

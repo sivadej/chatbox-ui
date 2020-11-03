@@ -1,17 +1,15 @@
+// TODO: styling
+
 import React from 'react';
-
-function ChannelTitleSection({
-  channelName,
-  channelType,
-}: ChannelTitleSectionProps): JSX.Element {
-  return <div>{`#${channelName} (${channelType})`}</div>;
-}
-
-// TODO: limit channelType in type def (ex: 'public', 'private', 'direct')
 
 interface ChannelTitleSectionProps {
   channelName: string;
   channelType: string;
+}
+
+function ChannelTitleSection(props: ChannelTitleSectionProps): JSX.Element {
+  const { channelName, channelType } = props;
+  return <div>{`#${channelName} (${channelType})`}</div>;
 }
 
 export default ChannelTitleSection;

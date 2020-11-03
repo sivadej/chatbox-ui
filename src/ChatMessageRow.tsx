@@ -1,13 +1,23 @@
 import React from 'react';
 import AvatarSmall from './AvatarSmall';
-import { dateConversionISOtoTime as convertDate } from './dateConversionHelpers';
+import {
+  dateConversionISOtoTime as convertDate,
+  dateConversionISOtoShortTime as convertDateShort,
+} from './dateConversionHelpers';
 import styles from './ChatMessageRow.module.css';
 import { IMessage } from './Channel';
 
-function ChatMessageRow({ message }: ChatMessageRowProps): JSX.Element {
-  const { text, timestamp, displayName, avatarImg } = message;
+interface ChatMessageRowProps {
+  message: IMessage;
+  isSubsequentMsg: boolean;
+}
 
-  return (
+function ChatMessageRow(props: ChatMessageRowProps): JSX.Element {
+  const { message, isSubsequentMsg } = props;
+  const { text, timestamp, displayName, avatarImg, status } = message;
+  const hasError = status === 'ERROR';
+
+  return !isSubsequentMsg ? (
     <div className={styles.messageRow}>
       <div className={styles.messageRowLeft}>
         <AvatarSmall imgUrl={avatarImg} altTag={displayName} />
@@ -18,13 +28,30 @@ function ChatMessageRow({ message }: ChatMessageRowProps): JSX.Element {
           <div className={styles.timestamp}>{convertDate(timestamp)}</div>
         </div>
         <div className={styles.messageBody}>{text}</div>
+        <div className={styles.error}>
+          {hasError ? DEFAULT_ERROR_MSG : null}
+        </div>
+      </div>
+    </div>
+  ) : (
+    <div className={styles.messageRow}>
+      <div className={styles.messageRowLeft}>
+        <div className={`${styles.timestamp} ${styles.hidden}`}>
+          {convertDateShort(timestamp)}
+        </div>
+      </div>
+      <div className={styles.messageRowRight}>
+        <div className={styles.nameTimeRow}></div>
+        <div className={styles.messageBody}>{text}</div>
+        <div className={styles.error}>
+          {hasError ? DEFAULT_ERROR_MSG : null}
+        </div>
       </div>
     </div>
   );
 }
 
-interface ChatMessageRowProps {
-  message: IMessage;
-}
+const DEFAULT_ERROR_MSG: string =
+  'A problem occurred when sending this message.';
 
 export default ChatMessageRow;
