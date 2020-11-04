@@ -3,7 +3,6 @@ import styles from './ChatInput.module.css';
 
 interface ChatInputProps {
   onSend: (msg: string) => void;
-  ref: any;
 }
 
 function ChatInput(props: ChatInputProps): JSX.Element {

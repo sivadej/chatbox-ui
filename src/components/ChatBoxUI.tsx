@@ -18,14 +18,6 @@ function ChatBoxUI(props: ChatBoxUIProps): JSX.Element {
   const { isLoading, isError, onSend, children, hideStatusBar = false } = props;
   const data = children;
 
-  function handleScrollToRef(messageRef: any) {
-    messageRef.current.scrollIntoView({ behavior: 'smooth' });
-  }
-
-  const ChatInputWithRef = React.forwardRef<HTMLDivElement>((props, ref) => {
-    return <ChatInput onSend={onSend} ref={ref} />;
-  });
-
   if (isError) return <ChannelError />;
   if (isLoading) return <Spinner />;
 
@@ -39,15 +31,11 @@ function ChatBoxUI(props: ChatBoxUIProps): JSX.Element {
         ) : null}
         <div className={styles.contentWrapper}>
           <div className={styles.overflowContainer}>
-            <ChatMessages
-              messages={data.messages}
-              onScrollToRef={handleScrollToRef}
-            />
+            <ChatMessages messages={data.messages} />
           </div>
         </div>
         <div className={styles.fixedContainerBottom}>
-          {/* <ChatInput onSend={onSend} /> */}
-          <ChatInputWithRef />
+          <ChatInput onSend={onSend} />
         </div>
       </div>
     </div>

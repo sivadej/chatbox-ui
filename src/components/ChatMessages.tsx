@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { useRef, useEffect } from 'react';
 import ChatMessageRow from './ChatMessageRow';
 import styles from './ChatMessages.module.css';
 import LineBreakWithDate from './LineBreakWithDate';
@@ -12,16 +12,23 @@ import { IMessage } from './ChatBoxUI';
 
 interface ChatMessagesProps {
   messages: IMessage[];
-  onScrollToRef: (messagesRef: any) => void;
 }
 
 function ChatMessages(props: ChatMessagesProps): JSX.Element {
-  const { messages, onScrollToRef } = props;
-  const bottomOfMessagesRef: any = useRef<HTMLDivElement>(null);
+  const { messages } = props;
+  const endOfListRef: any = useRef<HTMLDivElement>(null);
+
+  function doTheScrollThing() {
+    endOfListRef.current.scrollIntoView({ behavior: 'smooth' });
+  }
+
+  useEffect(() => {
+    doTheScrollThing();
+  }, [messages]);
 
   return (
     <div>
-      <button onClick={() => onScrollToRef(bottomOfMessagesRef)}>scroll</button>
+      <button onClick={doTheScrollThing}>scroll</button>
       <div className={styles.container}>
         {messages.map((msg: IMessage, idx: number) => {
           // determine if a line break needs to render above this message.
@@ -52,7 +59,7 @@ function ChatMessages(props: ChatMessagesProps): JSX.Element {
             </div>
           );
         })}
-        <div id='messages-list-end' ref={bottomOfMessagesRef} />
+        <div id='messages-list-end' ref={endOfListRef} />
       </div>
     </div>
   );
