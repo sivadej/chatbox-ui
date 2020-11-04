@@ -1,12 +1,5 @@
-.channelContainer {
-  -webkit-animation: fade 500ms; /* Safari 4+ */
-  -moz-animation: fade 500ms; /* Fx 5+ */
-  -o-animation: fade 500ms; /* Opera 12+ */
-  animation: fade 500ms; /* IE 10+, Fx 29+ */
-}
-
 .error {
-  height: 100vh;
+  height: 100%;
   display: flex;
   justify-content: center;
 }
@@ -14,6 +7,43 @@
 .errorText {
   color: red;
   align-self: center;
+}
+/* a container with flex-direction column */
+.mainContainer {
+  -webkit-animation: fade 500ms; /* Safari 4+ */
+  -moz-animation: fade 500ms; /* Fx 5+ */
+  -o-animation: fade 500ms; /* Opera 12+ */
+  animation: fade 500ms; /* IE 10+, Fx 29+ */
+  /* height: 400px; or position:absolute; height:100%; */
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  height: 100vh;
+}
+
+/* an arbitrary container of fixed height */
+.fixedContainerBottom {
+  min-height: 0;
+  height: auto;
+}
+
+.fixedContainerTop {
+  min-height: 0;
+  height: auto;
+}
+
+/* this is the flex container that will take the rest of the height */
+.contentWrapper {
+  display: flex;
+  flex: 1;
+  min-height: 0px; /* IMPORTANT: you need this for non-chrome browsers */
+  justify-content: flex-end;
+}
+
+/* the container for our overflowed content */
+.overflowContainer {
+  flex: 1;
+  overflow: auto;
 }
 
 @-webkit-keyframes fade {

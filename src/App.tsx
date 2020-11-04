@@ -1,4 +1,4 @@
-// mock functionality for ChatBox UI component.
+// tools to mess with ChatBox UI component.
 
 import React, { useState } from 'react';
 import './App.css';
@@ -19,6 +19,7 @@ function App(): JSX.Element {
   const [data, setData] = useState(req.data);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
+  const [testDivStyle, setTestDivStyle] = useState({});
 
   const handleSend = (msg: string): void => {
     const res = submitMessage(
@@ -57,9 +58,23 @@ function App(): JSX.Element {
           top: 0,
           right: 0,
           zIndex: 1000,
+          opacity: 0.7,
         }}>
         <button onClick={() => setLoading(!loading)}>toggle loading</button>
         <button onClick={() => setError(!error)}>toggle error</button>
+        <div>
+          <button
+            onClick={() =>
+              setTestDivStyle({
+                width: '400px',
+                height: '400px',
+                border: '1px solid black',
+              })
+            }>
+            400x400
+          </button>
+          <button onClick={() => setTestDivStyle({})}>full window</button>
+        </div>
         {/* <div>
           <button onClick={() => sendExpectingError('this should not work')}>
             attempt send w/ failure
@@ -71,9 +86,11 @@ function App(): JSX.Element {
         <div>{error ? 'has error' : 'no error'}</div>
       </div>
 
-      <ChatBoxUI isLoading={loading} isError={error} onSend={handleSend}>
-        {data}
-      </ChatBoxUI>
+      <div style={testDivStyle}>
+        <ChatBoxUI isLoading={loading} isError={error} onSend={handleSend}>
+          {data}
+        </ChatBoxUI>
+      </div>
     </div>
   );
 }

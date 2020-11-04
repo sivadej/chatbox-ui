@@ -1,5 +1,3 @@
-// TODO: styling
-
 import React from 'react';
 
 interface ChannelTitleSectionProps {
