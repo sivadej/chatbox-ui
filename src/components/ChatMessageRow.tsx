@@ -48,6 +48,6 @@ function ChatMessageRow(props: ChatMessageRowProps): JSX.Element {
 }
 
 const DEFAULT_ERROR_MSG: string =
-  'A problem occurred when sending this message.';
+  'An error occurred. This message was not sent.';
 
 export default ChatMessageRow;

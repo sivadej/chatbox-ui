@@ -16,19 +16,15 @@ interface ChatMessagesProps {
 
 function ChatMessages(props: ChatMessagesProps): JSX.Element {
   const { messages } = props;
+
+  // scroll to bottom of messages list on each render
   const endOfListRef: any = useRef<HTMLDivElement>(null);
-
-  function doTheScrollThing() {
-    endOfListRef.current.scrollIntoView({ behavior: 'smooth' });
-  }
-
   useEffect(() => {
-    doTheScrollThing();
+    endOfListRef.current.scrollIntoView({ behavior: 'smooth' });
   }, [messages]);
 
   return (
     <div>
-      <button onClick={doTheScrollThing}>scroll</button>
       <div className={styles.container}>
         {messages.map((msg: IMessage, idx: number) => {
           // determine if a line break needs to render above this message.

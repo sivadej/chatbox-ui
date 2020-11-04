@@ -99,12 +99,11 @@
       },
       {
         "messageId": 123211155666645,
-        "timestamp": "2020-11-01T01:05:05-00:00",
+        "timestamp": "2020-11-03T01:05:05-00:00",
         "text": "see ya later",
         "authorId": 3,
         "displayName": "steve",
-        "avatarImg": "https://randomuser.me/api/portraits/men/21.jpg",
-        "status": "ERROR"
+        "avatarImg": "https://randomuser.me/api/portraits/men/21.jpg"
       }
     ]
   }

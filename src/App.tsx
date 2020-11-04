@@ -1,48 +1,52 @@
 // tools to mess with ChatBox UI component.
-
 import React, { useState } from 'react';
 import './App.css';
-import ChatBoxUI from './components/ChatBoxUI';
+import ChatBoxUI, { IMessage, IChatUser } from './components/ChatBoxUI';
+import fakeData from './sampleData/sampleData.json';
 
-import {
-  loadInitialData,
-  submitMessage,
-  submitMessageWithError,
-} from './fakeServer/server';
-const req = loadInitialData();
-
-const testUser: any = {
+const currentUser: IChatUser = {
   displayName: 'Bomby',
+  id: 999,
+  fullName: 'Bomby K',
 };
 
 function App(): JSX.Element {
-  const [data, setData] = useState(req.data);
+  const [data, setData] = useState(fakeData.data);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
   const [testDivStyle, setTestDivStyle] = useState({});
+  const [fixed, setFixed] = useState(true);
+  const [responseWillFail, setResponseWillFail] = useState(false);
 
   const handleSend = (msg: string): void => {
-    const res = submitMessage(
-      {
-        timestamp: new Date().toISOString(),
-        text: msg,
-        displayName: testUser.displayName,
-      },
-      data
-    );
-    setData(res);
-  };
+    //update state client side immediately
+    const newMsg: IMessage = {
+      timestamp: new Date().toISOString(),
+      text: msg,
+      displayName: currentUser.displayName,
+    };
+    const newDataObject: any = {
+      ...data,
+      messages: [...data.messages, newMsg],
+    };
+    setData(newDataObject);
 
-  const sendExpectingError = (msg: string): void => {
-    const res = submitMessageWithError(
-      {
-        timestamp: new Date().toISOString(),
-        text: msg,
-        displayName: testUser.displayName,
-      },
-      data
-    );
-    setData(res);
+    if (responseWillFail) {
+      setTimeout(() => {
+        console.log('SERVER: response error');
+        newMsg.status = 'ERROR';
+        const newDataObject: any = {
+          ...data,
+          messages: [...data.messages, newMsg],
+        };
+        setData(newDataObject);
+      }, 2000);
+    } else {
+      setTimeout(() => {
+        console.log('SERVER: response ok');
+        //update local message state with status and id?
+      }, 1000);
+    }
   };
 
   return (
@@ -71,15 +75,18 @@ function App(): JSX.Element {
                 border: '1px solid black',
               })
             }>
-            400x400
+            fixed 400
           </button>
-          <button onClick={() => setTestDivStyle({})}>full window</button>
+          <button onClick={() => setTestDivStyle({})}>full flex</button>
+          <button onClick={() => setFixed((curr) => !curr)}>
+            toggle isFixed
+          </button>
         </div>
-        {/* <div>
-          <button onClick={() => sendExpectingError('this should not work')}>
-            attempt send w/ failure
+        <div>
+          <button onClick={() => setResponseWillFail((curr) => !curr)}>
+            {responseWillFail ? 'resp fail' : 'resp ok'}
           </button>
-        </div> */}
+        </div>
         <div>states:</div>
         <div>messages: {data.messages.length}</div>
         <div>{loading ? 'loading' : 'loaded'}</div>
@@ -87,7 +94,12 @@ function App(): JSX.Element {
       </div>
 
       <div style={testDivStyle}>
-        <ChatBoxUI isLoading={loading} isError={error} onSend={handleSend}>
+        <ChatBoxUI
+          isLoading={loading}
+          isError={error}
+          onSend={handleSend}
+          isFixedSize={fixed}
+          hideStatusBar>
           {data}
         </ChatBoxUI>
       </div>

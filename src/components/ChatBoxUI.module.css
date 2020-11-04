@@ -14,11 +14,10 @@
   -moz-animation: fade 500ms; /* Fx 5+ */
   -o-animation: fade 500ms; /* Opera 12+ */
   animation: fade 500ms; /* IE 10+, Fx 29+ */
-  /* height: 400px; or position:absolute; height:100%; */
   display: flex;
   flex-direction: column;
   align-items: stretch;
-  height: 100vh;
+  height: 100%;
 }
 
 /* an arbitrary container of fixed height */
@@ -44,6 +43,16 @@
 .overflowContainer {
   flex: 1;
   overflow: auto;
+}
+
+/* outerContainer height property must be different based on whether
+component is rendering within a fixed width/height or within a flexbox/window */
+.outerContainerFixed {
+  height: 100%;
+}
+
+.outerContainerFlex {
+  height: 100vh;
 }
 
 @-webkit-keyframes fade {

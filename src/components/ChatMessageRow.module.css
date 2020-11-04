@@ -52,6 +52,6 @@
 
 .error {
   color: rgb(189, 0, 0);
-  font-weight: bold;
-  font-size: 0.7em;
+  font-weight: 700;
+  font-size: 0.8em;
 }

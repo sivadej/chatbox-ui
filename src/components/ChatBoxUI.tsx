@@ -11,18 +11,29 @@ interface ChatBoxUIProps {
   isLoading: boolean;
   isError: boolean;
   hideStatusBar?: boolean;
+  isFixedSize?: boolean;
   onSend: (text: string) => void;
 }
 
 function ChatBoxUI(props: ChatBoxUIProps): JSX.Element {
-  const { isLoading, isError, onSend, children, hideStatusBar = false } = props;
+  const {
+    isLoading,
+    isError,
+    onSend,
+    children,
+    hideStatusBar = false,
+    isFixedSize = false,
+  } = props;
   const data = children;
 
   if (isError) return <ChannelError />;
   if (isLoading) return <Spinner />;
 
   return (
-    <div>
+    <div
+      className={
+        isFixedSize ? styles.outerContainerFixed : styles.outerContainerFlex
+      }>
       <div className={styles.mainContainer}>
         {!hideStatusBar ? (
           <div className={styles.fixedContainerTop}>
