@@ -55,7 +55,14 @@ function ChatMessages(props: ChatMessagesProps): JSX.Element {
             </div>
           );
         })}
-        <div id='messages-list-end' ref={endOfListRef} />
+
+        {!messages.length ? (
+          <div className={styles.emptyChat}>
+            No messages in this chat yet. Say hello!
+          </div>
+        ) : null}
+
+        <div id='messages-list-end' ref={endOfListRef}></div>
       </div>
     </div>
   );

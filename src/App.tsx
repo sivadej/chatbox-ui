@@ -1,7 +1,11 @@
 // tools to mess with ChatBox UI component.
 import React, { useState } from 'react';
 import './App.css';
-import ChatBoxUI, { ChatBoxMessage, ChatBoxUser } from './components/ChatBoxUI';
+import ChatBoxUI, {
+  ChatBox,
+  ChatBoxMessage,
+  ChatBoxUser,
+} from './components/ChatBoxUI';
 import fakeData from './sampleData/sampleMessagesOnly.json';
 //import fakeData from './sampleData/sampleData.json';
 //import fakeData from './sampleData/sampleData2.json';
@@ -20,13 +24,18 @@ const jane: ChatBoxUser = {
 };
 
 function App(): JSX.Element {
-  const [data, setData] = useState(fakeData.data);
+  const [data, setData] = useState(INITIAL_DATA);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
   const [testDivStyle, setTestDivStyle] = useState({});
   const [fixed, setFixed] = useState(true);
   const [responseWillFail, setResponseWillFail] = useState(false);
   const [user, setUser] = useState(bomby);
+
+  function loadData(): void {
+    setData(fakeData.data);
+    setLoading(false);
+  }
 
   const handleSend = (msg: string): void => {
     //update client-side state immediately
@@ -52,7 +61,7 @@ function App(): JSX.Element {
           messages: [...data.messages, newMsg],
         };
         setData(newDataObject);
-      }, 2000);
+      }, 1000);
     } else {
       setTimeout(() => {
         console.log('SERVER: response ok');
@@ -62,7 +71,7 @@ function App(): JSX.Element {
           messages: [...data.messages, newMsg],
         };
         setData(newDataObject);
-      }, 1000);
+      }, 500);
     }
   };
 
@@ -82,9 +91,7 @@ function App(): JSX.Element {
           opacity: 0.7,
         }}>
         <div>ChatBoxUI Tester</div>
-        <button onClick={() => setLoading(!loading)}>
-          {loading ? 'loading' : 'loaded'}
-        </button>
+        <button onClick={loadData}>{loading ? 'loading' : 'loaded'}</button>
         <button onClick={() => setError(!error)}>
           {error ? 'load error' : 'no error'}
         </button>
@@ -128,5 +135,7 @@ function App(): JSX.Element {
     </div>
   );
 }
+
+const INITIAL_DATA: ChatBox = { messages: [] };
 
 export default App;

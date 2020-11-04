@@ -20,7 +20,7 @@ function ChatBoxUI(props: ChatBoxUIProps): JSX.Element {
     isLoading,
     isError,
     onSend,
-    children,
+    children = DEFAULT_CHATBOX_DATA,
     hideStatusBar = false,
     isFixedSize = false,
   } = props;
@@ -80,5 +80,7 @@ export interface ChatBoxInfo {
   name: string;
   type: string | 'PUBLIC' | 'PRIVATE' | 'DIRECT'; //temporarily allowing string until i find out why this isn't jiving with compiler
 }
+
+const DEFAULT_CHATBOX_DATA: ChatBox = { messages: [] };
 
 export default ChatBoxUI;
