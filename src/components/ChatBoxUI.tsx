@@ -24,7 +24,7 @@ function ChatBoxUI(props: ChatBoxUIProps): JSX.Element {
     hideStatusBar = false,
     isFixedSize = false,
   } = props;
-  const data = children;
+  const data: IChannel = children;
 
   if (isError) return <ChannelError />;
   if (isLoading) return <Spinner />;
@@ -35,7 +35,7 @@ function ChatBoxUI(props: ChatBoxUIProps): JSX.Element {
         isFixedSize ? styles.outerContainerFixed : styles.outerContainerFlex
       }>
       <div className={styles.mainContainer}>
-        {!hideStatusBar ? (
+        {!hideStatusBar && data.channelInfo && data.users ? (
           <div className={styles.fixedContainerTop}>
             <ChannelBar info={data.channelInfo} userCount={data.users.length} />
           </div>
@@ -54,15 +54,15 @@ function ChatBoxUI(props: ChatBoxUIProps): JSX.Element {
 }
 
 export interface IChannel {
-  channelInfo: IChannelInfo;
-  users: IChatUser[];
+  channelInfo?: IChannelInfo;
+  users?: IChatUser[];
   messages: IMessage[];
 }
 
 export interface IMessage {
   timestamp: string;
   text: string;
-  authorId?: number;
+  userId?: number;
   displayName: string;
   avatarImg?: string;
   id?: number;

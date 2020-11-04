@@ -1,25 +1,86 @@
-Short: "Duplicate" of the Slack chat box (style/animation)
+## ChatBoxUI
 
-Generic handling of message lists.
+**Reusable component for chatroom-style messaging. UI inspired by Slack messaging channels.**
 
-Message:
-- User Full Name
-- User ID
-- Timestamp (ISO-8601)
-- Message Text
+**Core Functionality**
 
-Minimum Scope:
-- Chat functionality only
-- Not Markdown, No attachments, basically just text
-- User icons yes.
+- Displays timestamped messages with user's name and avatar.
+- Optional: Can display as a "chat room" with users
 
-Simulated backend.
-- Implement a "delayed" save of server data.
-- Optimistic response
+**Expected Behavior**
 
+- Should scale to the full height and width of its parent.
+- ChatBox containing no messages should display a general greeting, informing user that the chatbox is loaded.
+- Messages list should be contained in a scrollable area.
+- On load and on send, the messages list should scroll to the bottom of the scrollable area.
+- The messages list should contain line breaks for each day with each line showing the date. More recent messages should be designated using line breaks showing "Today" and "Yesterday" instead of their respective dates.
+- Message send should ignore leading and trailing whitespaces
+- The 'Send' button should only be clickable while the input field contains text
+- The onSend callback should be invoked by clicking the 'Send' button or pressing Enter while the input text field is in focus.
+- It should be able to handle an optimistic UI pattern for message send.
+- A status bar should be displayed if Users and ChannelInfo are provided, otherwise the status bar will be hidden. There should be an option to force the status bar not to render.
 
+**Props**
 
-1:1 UI
-- Same default font
-- Same color
-- Same sizing
+| Name                          | Type             | Description                                                                                                                       |
+| ----------------------------- | ---------------- | --------------------------------------------------------------------------------------------------------------------------------- |
+| `children`                    | `IChannel`       | Message and (optional) User and ChatRoom data                                                                                     |
+| `isLoading`                   | `boolean`        | Hides main component and displays loading animation. Default: true                                                                |
+| `isError`                     | `boolean`        | Hides main component and displays general error. Not related to per-message errors. Default: false                                |
+| `onSend`                      | `(string)=>void` | Callback with message text                                                                                                        |
+| `hideStatusBar`<br>(optional) | `boolean`        | Hide status bar that renders when Users and ChannelInfo are provided                                                              |
+| `isFixedSize` <br>(optional)  | `boolean`        | Must be enabled this if component is being rendered inside an element with a fixed height, otherwise it will not render properly. |
+
+**Interfaces**
+
+```
+IChannel
+{
+  channelInfo?: IChannelInfo;
+  users?: IChatUser[];
+  messages: IMessage[];
+}
+```
+
+```
+IChannel {
+  channelInfo?: IChannelInfo;
+  users?: IChatUser[];
+  messages: IMessage[];
+}
+```
+
+```
+IMessage {
+  timestamp: string;
+  text: string;
+  userId?: number;
+  displayName: string;
+  avatarImg?: string;
+  id?: number;
+  status?: string;
+}
+```
+
+```
+IChannelInfo {
+  name: string;
+  type: string;
+}
+```
+
+**Example**
+
+```
+// State and functions handled within this parent component:
+// loading, error, handleSend, fixed, data
+...
+        <ChatBoxUI
+          isLoading={loading}
+          isError={error}
+          onSend={handleSend}
+          isFixedSize={fixed}
+          hideStatusBar>
+          {data}
+        </ChatBoxUI>
+```

@@ -2,7 +2,9 @@
 import React, { useState } from 'react';
 import './App.css';
 import ChatBoxUI, { IMessage, IChatUser } from './components/ChatBoxUI';
-import fakeData from './sampleData/sampleData.json';
+import fakeData from './sampleData/sampleMessagesOnly.json';
+//import fakeData from './sampleData/sampleData.json';
+//import fakeData from './sampleData/sampleData2.json';
 
 const bomby: IChatUser = {
   displayName: 'Bomby',
@@ -32,7 +34,7 @@ function App(): JSX.Element {
       timestamp: new Date().toISOString(),
       text: msg,
       displayName: user.displayName,
-      authorId: user.id,
+      userId: user.id,
       avatarImg: user.avatarImg,
     };
     const newDataObject: any = {
@@ -54,7 +56,12 @@ function App(): JSX.Element {
     } else {
       setTimeout(() => {
         console.log('SERVER: response ok');
-        //update local message state with status and id?
+        newMsg.status = 'SENT';
+        const newDataObject: any = {
+          ...data,
+          messages: [...data.messages, newMsg],
+        };
+        setData(newDataObject);
       }, 1000);
     }
   };
@@ -74,8 +81,13 @@ function App(): JSX.Element {
           zIndex: 1000,
           opacity: 0.7,
         }}>
-        <button onClick={() => setLoading(!loading)}>toggle loading</button>
-        <button onClick={() => setError(!error)}>toggle error</button>
+        <div>ChatBoxUI Tester</div>
+        <button onClick={() => setLoading(!loading)}>
+          {loading ? 'loading' : 'loaded'}
+        </button>
+        <button onClick={() => setError(!error)}>
+          {error ? 'load error' : 'no error'}
+        </button>
         <div>
           <button
             onClick={() =>
@@ -89,7 +101,7 @@ function App(): JSX.Element {
           </button>
           <button onClick={() => setTestDivStyle({})}>full flex</button>
           <button onClick={() => setFixed((curr) => !curr)}>
-            toggle isFixed
+            {fixed ? 'fixed style' : 'flex style'}
           </button>
         </div>
         <div>
@@ -99,10 +111,8 @@ function App(): JSX.Element {
           <button onClick={() => setUser(bomby)}>user: bomby</button>
           <button onClick={() => setUser(jane)}>user: jane</button>
         </div>
-        <div>user: {user.displayName}</div>
+        <div>current user: {user.displayName}</div>
         <div>messages: {data.messages.length}</div>
-        <div>{loading ? 'loading' : 'loaded'}</div>
-        <div>{error ? 'has error' : 'no error'}</div>
       </div>
 
       <div style={testDivStyle}>

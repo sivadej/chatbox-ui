@@ -41,7 +41,7 @@ function ChatMessages(props: ChatMessagesProps): JSX.Element {
           if (
             idx !== 0 &&
             !isLineBreakNeeded &&
-            messages[idx - 1].authorId === msg.authorId
+            messages[idx - 1].userId === msg.userId
           )
             isSubsequentMsg = true;
 

@@ -1,29 +1,5 @@
 {
   "data": {
-    "channelInfo": {
-      "name": "general",
-      "type": "public"
-    },
-    "users": [
-      {
-        "id": 1,
-        "fullName": "John Doe",
-        "displayName": "john",
-        "avatarImg": "john.png"
-      },
-      {
-        "id": 2,
-        "fullName": "Jane Smith",
-        "displayName": "jane",
-        "avatarImg": "jane.png"
-      },
-      {
-        "id": 3,
-        "fullName": "Steve Jobs",
-        "displayName": "steve",
-        "avatarImg": "steve.png"
-      }
-    ],
     "messages": [
       {
         "messageId": 123451,
