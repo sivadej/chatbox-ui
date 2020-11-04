@@ -35,8 +35,8 @@ App
                 -MessageOptionsPopover
                     -Tooltip
             -ProfilePopover
-        -ChatInputBox
-            -ChatInputBoxTextInput
-            -ChatInputBoxIconRow
-                ***ChatInputBoxIcon
+        -ChatInput
+            -ChatInputTextInput
+            -ChatInputIconRow
+                ***ChatInputIcon
                     -Tooltip

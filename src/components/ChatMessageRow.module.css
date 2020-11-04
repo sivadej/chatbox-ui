@@ -49,3 +49,9 @@
 .hidden {
   display: none;
 }
+
+.error {
+  color: rgb(189, 0, 0);
+  font-weight: 700;
+  font-size: 0.8em;
+}

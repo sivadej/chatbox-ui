@@ -1,0 +1,56 @@
+.container {
+  border: 1px solid black;
+  border-radius: 0.2em;
+  margin: 0.4em;
+  padding: 0;
+}
+
+.inputBox {
+  border: 0;
+  background-color: inherit;
+  width: 100%;
+  font-family: inherit;
+  font-size: inherit;
+}
+
+.inputBox:focus {
+  outline: none;
+}
+
+::placeholder {
+  opacity: 0.3;
+}
+
+::-ms-input-placeholder {
+  color: #757575;
+}
+
+.messageRow {
+  background-color: inherit;
+  border-radius: inherit;
+  padding: 0.7em;
+  display: flex;
+}
+
+.iconRow {
+  padding: 0.5em;
+  border-radius: 0 0 0.2em 0.2em;
+  border-top: 1px solid rgb(226, 226, 226);
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  background-color: rgb(248, 248, 248);
+}
+
+.btnSend {
+  flex: none;
+  background-color: rgb(60, 129, 60);
+  border: 0;
+  color: white;
+  padding: 0.5em;
+  border-radius: 0.2em;
+}
+
+.btnSend:disabled {
+  background-color: rgb(189, 189, 189);
+}
