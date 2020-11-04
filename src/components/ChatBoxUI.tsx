@@ -35,9 +35,9 @@ function ChatBoxUI(props: ChatBoxUIProps): JSX.Element {
         isFixedSize ? styles.outerContainerFixed : styles.outerContainerFlex
       }>
       <div className={styles.mainContainer}>
-        {!hideStatusBar && data.channelInfo && data.users ? (
+        {!hideStatusBar && data.info && data.users ? (
           <div className={styles.fixedContainerTop}>
-            <StatusBar info={data.channelInfo} users={data.users} />
+            <StatusBar info={data.info} users={data.users} />
           </div>
         ) : null}
         <div className={styles.contentWrapper}>
@@ -54,7 +54,7 @@ function ChatBoxUI(props: ChatBoxUIProps): JSX.Element {
 }
 
 export interface ChatBox {
-  channelInfo?: ChatBoxInfo;
+  info?: ChatBoxInfo;
   users?: ChatBoxUser[];
   messages: ChatBoxMessage[];
 }
@@ -78,7 +78,7 @@ export interface ChatBoxUser {
 
 export interface ChatBoxInfo {
   name: string;
-  type: string | 'PUBLIC' | 'PRIVATE' | 'DIRECT'; //temporarily allowing string until i find out why this isn't jiving with compiler
+  type: string;
 }
 
 const DEFAULT_CHATBOX_DATA: ChatBox = { messages: [] };
