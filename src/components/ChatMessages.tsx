@@ -3,7 +3,7 @@ import ChatMessageRow from './ChatMessageRow';
 import styles from './ChatMessages.module.css';
 import LineBreakWithDate from './LineBreakWithDate';
 import { isSameDate } from './../helpers/dateConversionHelpers';
-import { IMessage } from './ChatBoxUI';
+import { ChatBoxMessage } from './ChatBoxUI';
 
 // render messages from array of objects.
 // render SubsequentMessageRow component only if previous message is same user.
@@ -11,7 +11,7 @@ import { IMessage } from './ChatBoxUI';
 // first message of each new day should never be a subsequent message.
 
 interface ChatMessagesProps {
-  messages: IMessage[];
+  messages: ChatBoxMessage[];
 }
 
 function ChatMessages(props: ChatMessagesProps): JSX.Element {
@@ -26,7 +26,7 @@ function ChatMessages(props: ChatMessagesProps): JSX.Element {
   return (
     <div>
       <div className={styles.container}>
-        {messages.map((msg: IMessage, idx: number) => {
+        {messages.map((msg: ChatBoxMessage, idx: number) => {
           // determine if a line break needs to render above this message.
           let isLineBreakNeeded: boolean = true;
           if (

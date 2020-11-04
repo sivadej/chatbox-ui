@@ -18,40 +18,31 @@
 - The 'Send' button should only be clickable while the input field contains text
 - The onSend callback should be invoked by clicking the 'Send' button or pressing Enter while the input text field is in focus.
 - It should be able to handle an optimistic UI pattern for message send.
-- A status bar should be displayed if Users and ChannelInfo are provided, otherwise the status bar will be hidden. There should be an option to force the status bar not to render.
+- A status bar should be displayed if users and chat room info are provided, otherwise the status bar will be hidden. There should be an option to force the status bar not to render.
 
 **Props**
 
 | Name                          | Type             | Description                                                                                                                       |
 | ----------------------------- | ---------------- | --------------------------------------------------------------------------------------------------------------------------------- |
-| `children`                    | `IChannel`       | Message and (optional) User and ChatRoom data                                                                                     |
+| `children`                    | `ChatBox`        | Message and (optional) User and ChatRoom data                                                                                     |
 | `isLoading`                   | `boolean`        | Hides main component and displays loading animation. Default: true                                                                |
 | `isError`                     | `boolean`        | Hides main component and displays general error. Not related to per-message errors. Default: false                                |
 | `onSend`                      | `(string)=>void` | Callback with message text                                                                                                        |
-| `hideStatusBar`<br>(optional) | `boolean`        | Hide status bar that renders when Users and ChannelInfo are provided                                                              |
+| `hideStatusBar`<br>(optional) | `boolean`        | Hide status bar that normally renders when ChatBoxUser and ChatBoxInfo are provided                                               |
 | `isFixedSize` <br>(optional)  | `boolean`        | Must be enabled this if component is being rendered inside an element with a fixed height, otherwise it will not render properly. |
 
 **Interfaces**
 
 ```
-IChannel
-{
-  channelInfo?: IChannelInfo;
-  users?: IChatUser[];
-  messages: IMessage[];
+ChatBox {
+  info?: ChatBoxInfo;
+  users?: ChatBoxUser[];
+  messages: ChatBoxMessage[];
 }
 ```
 
 ```
-IChannel {
-  channelInfo?: IChannelInfo;
-  users?: IChatUser[];
-  messages: IMessage[];
-}
-```
-
-```
-IMessage {
+ChatBoxMessage {
   timestamp: string;
   text: string;
   userId?: number;
@@ -63,11 +54,22 @@ IMessage {
 ```
 
 ```
-IChannelInfo {
+ChatBoxInfo {
   name: string;
   type: string;
 }
 ```
+
+```
+ChatBoxUser {
+  id: number;
+  fullName: string;
+  displayName: string;
+  avatarImg?: string;
+}
+```
+
+Note: Every ChatBoxMessage object contains denormalized user data independent of ChatBoxUser data.
 
 **Example**
 

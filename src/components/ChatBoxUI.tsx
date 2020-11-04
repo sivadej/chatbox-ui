@@ -1,13 +1,13 @@
 import React from 'react';
-import ChannelBar from './ChannelBar';
+import StatusBar from './StatusBar';
 import ChatInput from './ChatInput';
 import ChatMessages from './ChatMessages';
 import Spinner from './Spinner';
-import ChannelError from './ChannelError';
+import ChatBoxError from './ChatBoxError';
 import styles from './ChatBoxUI.module.css';
 
 interface ChatBoxUIProps {
-  children: IChannel;
+  children: ChatBox;
   isLoading: boolean;
   isError: boolean;
   hideStatusBar?: boolean;
@@ -24,9 +24,9 @@ function ChatBoxUI(props: ChatBoxUIProps): JSX.Element {
     hideStatusBar = false,
     isFixedSize = false,
   } = props;
-  const data: IChannel = children;
+  const data: ChatBox = children;
 
-  if (isError) return <ChannelError />;
+  if (isError) return <ChatBoxError />;
   if (isLoading) return <Spinner />;
 
   return (
@@ -37,7 +37,7 @@ function ChatBoxUI(props: ChatBoxUIProps): JSX.Element {
       <div className={styles.mainContainer}>
         {!hideStatusBar && data.channelInfo && data.users ? (
           <div className={styles.fixedContainerTop}>
-            <ChannelBar info={data.channelInfo} userCount={data.users.length} />
+            <StatusBar info={data.channelInfo} users={data.users} />
           </div>
         ) : null}
         <div className={styles.contentWrapper}>
@@ -53,13 +53,13 @@ function ChatBoxUI(props: ChatBoxUIProps): JSX.Element {
   );
 }
 
-export interface IChannel {
-  channelInfo?: IChannelInfo;
-  users?: IChatUser[];
-  messages: IMessage[];
+export interface ChatBox {
+  channelInfo?: ChatBoxInfo;
+  users?: ChatBoxUser[];
+  messages: ChatBoxMessage[];
 }
 
-export interface IMessage {
+export interface ChatBoxMessage {
   timestamp: string;
   text: string;
   userId?: number;
@@ -69,14 +69,14 @@ export interface IMessage {
   status?: string;
 }
 
-export interface IChatUser {
+export interface ChatBoxUser {
   id: number;
   fullName: string;
   displayName: string;
   avatarImg?: string;
 }
 
-export interface IChannelInfo {
+export interface ChatBoxInfo {
   name: string;
   type: string | 'PUBLIC' | 'PRIVATE' | 'DIRECT'; //temporarily allowing string until i find out why this isn't jiving with compiler
 }

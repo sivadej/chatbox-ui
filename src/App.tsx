@@ -1,18 +1,18 @@
 // tools to mess with ChatBox UI component.
 import React, { useState } from 'react';
 import './App.css';
-import ChatBoxUI, { IMessage, IChatUser } from './components/ChatBoxUI';
+import ChatBoxUI, { ChatBoxMessage, ChatBoxUser } from './components/ChatBoxUI';
 import fakeData from './sampleData/sampleMessagesOnly.json';
 //import fakeData from './sampleData/sampleData.json';
 //import fakeData from './sampleData/sampleData2.json';
 
-const bomby: IChatUser = {
+const bomby: ChatBoxUser = {
   displayName: 'Bomby',
   id: 999,
   fullName: 'Bomby K',
 };
 
-const jane: IChatUser = {
+const jane: ChatBoxUser = {
   id: 2,
   fullName: 'Jane Smith',
   displayName: 'jane',
@@ -30,7 +30,7 @@ function App(): JSX.Element {
 
   const handleSend = (msg: string): void => {
     //update client-side state immediately
-    const newMsg: IMessage = {
+    const newMsg: ChatBoxMessage = {
       timestamp: new Date().toISOString(),
       text: msg,
       displayName: user.displayName,

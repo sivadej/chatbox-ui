@@ -3,11 +3,11 @@ import styles from './ChatBoxUI.module.css';
 
 const DEFAULT_ERROR_MSG = 'An error occurred while loading this chat...';
 
-interface ChannelErrorProps {
+interface ChatBoxErrorProps {
   errorMsg?: string;
 }
 
-function ChannelError(props: ChannelErrorProps) {
+function ChatBoxError(props: ChatBoxErrorProps) {
   const { errorMsg = DEFAULT_ERROR_MSG } = props;
   return (
     <div className={styles.error}>
@@ -16,4 +16,4 @@ function ChannelError(props: ChannelErrorProps) {
   );
 }
 
-export default ChannelError;
+export default ChatBoxError;

@@ -5,10 +5,10 @@ import {
   dateConversionISOtoShortTime as convertDateShort,
 } from './../helpers/dateConversionHelpers';
 import styles from './ChatMessageRow.module.css';
-import { IMessage } from './ChatBoxUI';
+import { ChatBoxMessage } from './ChatBoxUI';
 
 interface ChatMessageRowProps {
-  message: IMessage;
+  message: ChatBoxMessage;
   isSubsequentMsg: boolean;
 }
 
