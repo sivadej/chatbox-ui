@@ -4,10 +4,17 @@ import './App.css';
 import ChatBoxUI, { IMessage, IChatUser } from './components/ChatBoxUI';
 import fakeData from './sampleData/sampleData.json';
 
-const currentUser: IChatUser = {
+const bomby: IChatUser = {
   displayName: 'Bomby',
   id: 999,
   fullName: 'Bomby K',
+};
+
+const jane: IChatUser = {
+  id: 2,
+  fullName: 'Jane Smith',
+  displayName: 'jane',
+  avatarImg: 'https://randomuser.me/api/portraits/women/76.jpg',
 };
 
 function App(): JSX.Element {
@@ -17,13 +24,16 @@ function App(): JSX.Element {
   const [testDivStyle, setTestDivStyle] = useState({});
   const [fixed, setFixed] = useState(true);
   const [responseWillFail, setResponseWillFail] = useState(false);
+  const [user, setUser] = useState(bomby);
 
   const handleSend = (msg: string): void => {
-    //update state client side immediately
+    //update client-side state immediately
     const newMsg: IMessage = {
       timestamp: new Date().toISOString(),
       text: msg,
-      displayName: currentUser.displayName,
+      displayName: user.displayName,
+      authorId: user.id,
+      avatarImg: user.avatarImg,
     };
     const newDataObject: any = {
       ...data,
@@ -86,8 +96,10 @@ function App(): JSX.Element {
           <button onClick={() => setResponseWillFail((curr) => !curr)}>
             {responseWillFail ? 'resp fail' : 'resp ok'}
           </button>
+          <button onClick={() => setUser(bomby)}>user: bomby</button>
+          <button onClick={() => setUser(jane)}>user: jane</button>
         </div>
-        <div>states:</div>
+        <div>user: {user.displayName}</div>
         <div>messages: {data.messages.length}</div>
         <div>{loading ? 'loading' : 'loaded'}</div>
         <div>{error ? 'has error' : 'no error'}</div>
